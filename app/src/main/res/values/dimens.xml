@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="button_trust_font_size">12sp</dimen>
+    <dimen name="button_menaces_text_font_size">12sp</dimen>
+    <dimen name="icon_ignoredList_size">50dp</dimen>
+    <dimen name="test">10dp</dimen>
+    <dimen name="margin_medium">13dp</dimen>
+    <dimen name="radius_tab">@dimen/_12sdp</dimen>
+    <dimen name="recycler_section_header_height">30dp</dimen>
+    <dimen name="dp_2">2dp</dimen>
+    <dimen name="dp_8">6dp</dimen>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#ffbb86fc</color>
+    <color name="purple_500">#ff6200ee</color>
+    <color name="purple_700">#ff3700b3</color>
+    <color name="teal_200">#ff03dac5</color>
+    <color name="text_color">#d6b869</color>
+    <color name="titlebg">#00ff00</color>
+
+    <color name="background">#f5f7fa</color>
+    <color name="black">#ff000000</color>
+    <color name="red">#e81414</color>
+    <color name="white">#ffffffff</color>
+    <color name="backgrounditem">#dddcdc</color>
+    <color name="divider">#545458</color>
+    <color name="pink">#ea9a9a</color>
+    <color name="trans">#54fcfffe</color>
+    <color name="color_txtdelete">#007aff</color>
+    <color name="teal_700">#ff018786</color>
+    <color name="SecondaryTextColor">#ffffff</color>
+    <color name="HighRiskColor">#22242b</color>
+    <color name="background_dialog_rocket">#80bdbdbd</color>
+    <color name="indiacator">#ffd600</color>
+    <color name="piechart_red">#d50000</color>
+    <color name="piechart_blue">#00b8d4</color>
+    <color name="piechart_origin">#ff6d00</color>
+    <color name="piechart_violet">#c51162</color>
+    <color name="piechart_yl">#ffd600</color>
+    <color name="piechart_green">#64dd17</color>
+    <color name="MediumRiskColor">#ffffff</color>
+    <color name="ProtectedRiskColor">#71b867</color>
+</resources>

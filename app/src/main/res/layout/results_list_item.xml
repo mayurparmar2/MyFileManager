@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemParent"
+    android:background="@drawable/custom_head_tabstorage"
+    android:padding="@dimen/_5sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="0dp">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="@dimen/icon_ignoredList_size"
+            android:layout_height="@dimen/icon_ignoredList_size"
+            android:layout_marginRight="@dimen/test"
+            android:src="@drawable/icon_app"
+            android:layout_alignParentLeft="true" />
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/card_1"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/Titlelabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="Google traductor"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="#e21616"
+            android:id="@+id/qualityApp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:text="hight"
+            android:singleLine="true"
+            android:layout_below="@+id/Titlelabel"
+            android:layout_alignLeft="@+id/Titlelabel"
+            android:fontFamily="@font/nuntinolight" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/goForward"
+        android:padding="@dimen/_5sdp"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/next_fragment"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
+</RelativeLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#66000000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lt_background"
+        android:background="@android:color/transparent"
+        android:visibility="gone"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        app:lottie_autoPlay="true"
+        app:lottie_imageAssetsFolder="images"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/rocketfast"
+        app:lottie_url="REPLACE_JSON_URL" />
+
+    <TextView
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        android:id="@+id/txt_ram"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:text="123Mb"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/fontbook" />
+
+    <ImageView
+        android:id="@+id/img_gif"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

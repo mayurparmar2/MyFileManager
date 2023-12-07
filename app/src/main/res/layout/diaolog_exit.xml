@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/custom_head_tabstorage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:padding="@dimen/_5sdp"
+        android:visibility="gone"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/iconnew_file"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/red"
+        android:gravity="center_vertical"
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:text="Exit "
+        android:fontFamily="@font/nutinoremibold"
+        android:layout_marginStart="@dimen/_15sdp" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:id="@+id/ask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="@string/exit_attention"
+        android:maxLines="2"
+        android:layout_below="@+id/title"
+        android:fontFamily="@font/fontbook"
+        android:paddingEnd="@dimen/_32sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="-1dp"
+        android:layout_alignParentEnd="true" />
+
+    <com.hsalf.smileyrating.SmileyRating
+        android:id="@+id/smile_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ask"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_20sdp" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/rate"
+        android:layout_toLeftOf="@+id/exit"
+        android:layout_toRightOf="@+id/cancel"
+        android:layout_below="@+id/smile_rating"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/fontbook"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="@string/cancel"
+        android:layout_below="@+id/smile_rating"
+        android:layout_alignParentLeft="true"
+        android:fontFamily="@font/fontbook"
+        android:layout_marginStart="@dimen/_32sdp" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginLeft="-1dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/exit"
+        android:layout_below="@+id/smile_rating"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/fontbold"
+        android:paddingEnd="@dimen/_32sdp" />
+</RelativeLayout>

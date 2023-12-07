@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/rela_Image_Album"
+        android:background="@drawable/custom_head_tabstorage"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/img_album"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:scaleType="centerCrop" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/txt_nameAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Facebook"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/img_info"
+            android:layout_below="@+id/cardview"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_7ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/txt_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/img_info"
+            android:layout_below="@+id/txt_nameAlbum"
+            android:fontFamily="@font/fontbook" />
+
+        <ImageView
+            android:id="@+id/img_info"
+            android:padding="@dimen/_3sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="-6dp"
+            android:src="@drawable/iconmore"
+            android:tint="#6a6a6a"
+            android:layout_below="@+id/cardview"
+            android:layout_alignParentRight="true" />
+
+        <ImageView
+            android:id="@+id/img_play"
+            android:padding="@dimen/_5sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/frame"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_check"
+        android:padding="@dimen/_6sdp"
+        android:visibility="gone"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:src="@drawable/esclip"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>

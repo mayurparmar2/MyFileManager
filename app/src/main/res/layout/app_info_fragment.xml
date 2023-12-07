@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.3">
+
+        <ImageView
+            android:id="@+id/iconGeneral"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/rocket_icon"
+            android:adjustViewBounds="false"
+            android:layout_weight="0.25" />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:ellipsize="end"
+                    android:id="@+id/titleApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reparar bateria"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/nuntinobold" />
+
+                <TextView
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="#e21616"
+                    android:id="@+id/warningLevel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:text="Riesgo ALTO"
+                    android:singleLine="true"
+                    android:layout_below="@+id/titleApp"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/nuntinobold" />
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:id="@+id/buttonsAppContainer"
+                    android:visibility="visible"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/warningLevel">
+
+                    <Button
+                        android:textSize="@dimen/button_trust_font_size"
+                        android:textColor="@color/black"
+                        android:layout_gravity="right"
+                        android:id="@+id/buttonTrust"
+                        android:background="@drawable/custom_edittext_dialogname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:text="@string/trust"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nuntinobold" />
+
+                    <Button
+                        android:textSize="@dimen/button_trust_font_size"
+                        android:textColor="@color/black"
+                        android:layout_gravity="right"
+                        android:id="@+id/buttonUninstall"
+                        android:background="@drawable/custom_edittext_dialogname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/uninstall"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nuntinobold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:id="@+id/buttonsConfigContainer"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:layout_below="@+id/warningLevel">
+
+                    <Button
+                        android:textSize="@dimen/button_trust_font_size"
+                        android:textColor="#8c9398"
+                        android:layout_gravity="right"
+                        android:id="@+id/buttonIgnoreConfig"
+                        android:background="#00ffffff"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ignored_setting"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:textSize="@dimen/button_trust_font_size"
+                        android:textColor="#8c9398"
+                        android:layout_gravity="right"
+                        android:id="@+id/buuttonOpenSettings"
+                        android:background="#00ffffff"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/open_setting"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listView"
+        android:background="@android:color/transparent"
+        android:padding="@dimen/_10sdp"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:divider="@null"
+        android:dividerHeight="@dimen/_5sdp"
+        android:layout_weight="0.75"
+        android:nestedScrollingEnabled="false" />
+</LinearLayout>

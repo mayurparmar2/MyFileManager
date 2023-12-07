@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginRight="@dimen/_10sdp">
+
+    <RelativeLayout
+        android:id="@+id/rela_Image_Album"
+        android:background="@drawable/custom_head_tabstorage"
+        android:padding="@dimen/_7sdp"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_125sdp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardview"
+            android:background="@drawable/rounder_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/img_album"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_80sdp"
+                android:src="@drawable/image_hide_button"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/img_frame"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/frame" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/txt_nameAlbum"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Facebook"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/img_info"
+            android:layout_below="@+id/cardview"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_7ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/txt_count"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/img_info"
+            android:layout_below="@+id/txt_nameAlbum"
+            android:fontFamily="@font/fontbook" />
+
+        <ImageView
+            android:id="@+id/img_info"
+            android:padding="@dimen/_7sdp"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/iconmore"
+            android:scaleType="centerCrop"
+            android:tint="#6a6a6a"
+            android:layout_below="@+id/cardview"
+            android:layout_alignParentRight="true" />
+
+        <ImageView
+            android:id="@+id/img_check"
+            android:paddingLeft="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/icon_check_multil"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+</RelativeLayout>

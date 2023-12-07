@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarStyle="insideOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/background"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/relaytive_sizeddick"
+                android:background="@drawable/custom_head_tabstorage"
+                android:padding="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/spiner"
+                    android:background="@drawable/rounder_textview"
+                    android:layout_width="@dimen/_85sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    style="@style/customthemespiner" />
+
+                <RelativeLayout
+                    android:id="@+id/relative_totoluse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@+id/spiner">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/img1"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_centerVertical="true"
+                        app:cardBackgroundColor="#e3001b"
+                        app:cardCornerRadius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:textSize="@dimen/_9ssp"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:text="@string/used"
+                        android:layout_toRightOf="@+id/img1"
+                        android:fontFamily="@font/nunrinoregular" />
+
+                    <TextView
+                        android:textSize="@dimen/_9ssp"
+                        android:textColor="@color/black"
+                        android:id="@+id/count_tutolspace"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:text="64 GB"
+                        android:layout_toRightOf="@+id/img1"
+                        android:layout_below="@+id/txt1"
+                        android:fontFamily="@font/fontbold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relative_used"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_below="@+id/relative_totoluse">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/img2"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_centerVertical="true"
+                        app:cardBackgroundColor="#ffb0b0"
+                        app:cardCornerRadius="@dimen/_4sdp" />
+
+                    <TextView
+                        android:textSize="@dimen/_9ssp"
+                        android:textColor="@color/black"
+                        android:id="@+id/txt2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:text="@string/toltal_space"
+                        android:layout_toRightOf="@+id/img2"
+                        android:fontFamily="@font/nunrinoregular" />
+
+                    <TextView
+                        android:textSize="@dimen/_9ssp"
+                        android:textColor="@color/black"
+                        android:id="@+id/count_used"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:text="64 GB"
+                        android:layout_toRightOf="@+id/img2"
+                        android:layout_below="@+id/txt2"
+                        android:fontFamily="@font/fontbold" />
+                </RelativeLayout>
+
+                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CircularProgressIndicator
+                    android:id="@+id/circular_progress"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="@dimen/_20ssp"
+                    android:layout_alignParentRight="true"
+                    app:direction="clockwise"
+                    app:enableProgressAnimation="true"
+                    app:progressBackgroundColor="@color/pink"
+                    app:progressBackgroundStrokeWidth="17dp"
+                    app:progressCap="round"
+                    app:progressColor="#e3001b"
+                    app:progressStrokeWidth="17dp"
+                    app:startAngle="270"
+                    app:textColor="#e3001b" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Categories"
+                    android:fontFamily="@font/nutinoremibold" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:background="@drawable/custom_head_tabstorage"
+                    android:paddingTop="@dimen/_15sdp"
+                    android:paddingBottom="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_image" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/images"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/t_countImage"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_video"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_video" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/videos"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countvideo"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_music"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_music" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/audios"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countmusic"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_document"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_document" />
+
+                            <TextView
+                                android:textSize="@dimen/_7ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_44sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/documentss"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_count_document"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    //////
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_zip"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_zipped" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Zipped"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countzip"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_apps"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_app" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/apps"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countapp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_APKs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_apks" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="APKs"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countapkfile"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_newfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/iconnew_file" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="New Files"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countnewfile"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_dowloaded"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_download"
+                                android:tint="@color/teal_700" />
+
+                            <TextView
+                                android:textSize="@dimen/_7ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/downloads"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countdowload"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_favaorite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_favorite" />
+
+                            <TextView
+                                android:textSize="@dimen/_7ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/favourite"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/t_count_fav"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_hide"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_hide" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="Hide"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:id="@+id/l_recycle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_10sdp">
+
+                            <ImageView
+                                android:background="@drawable/custom_iconfolder"
+                                android:padding="@dimen/_10sdp"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:src="@drawable/icon_recycle" />
+
+                            <TextView
+                                android:textSize="@dimen/_8ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Recycle"
+                                android:maxLines="1"
+                                android:fontFamily="@font/nutinoremibold" />
+
+                            <TextView
+                                android:textSize="@dimen/_6ssp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:id="@+id/txt_countrecycle"
+                                android:layout_width="@dimen/_40sdp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nuntinolight" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Recent"
+                    android:fontFamily="@font/nutinoremibold" />
+
+                <TextView
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="#e3001b"
+                    android:gravity="right"
+                    android:id="@+id/txt_viewall_recycle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="View all"
+                    android:fontFamily="@font/nunrinoregular" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleview_recent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="action_list">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </array>
+    <array name="my_tab_array">
+        <item>@string/tab1</item>
+        <item>@string/tab2</item>
+        <item>@string/tab3</item>
+    </array>
+</resources>

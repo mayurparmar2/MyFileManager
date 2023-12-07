@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp">
+
+        <LinearLayout
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@drawable/custom_head_tabstorage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:text="Internal Memory Info"
+                android:fontFamily="@font/nuntinobold"
+                android:textAlignment="center" />
+
+            <View
+                android:background="#dadada"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_15sdp"
+                android:layout_marginTop="8dp">
+
+                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.progressWheel.ProgressWheel
+                    android:layout_gravity="left"
+                    android:id="@+id/pw_spinner_internal"
+                    android:visibility="gone"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    ProgressWheel:barColor="#ff790b"
+                    ProgressWheel:barLength="60dp"
+                    ProgressWheel:barWidth="9dp"
+                    ProgressWheel:rimColor="#e56b07"
+                    ProgressWheel:rimWidth="5dp"
+                    ProgressWheel:spinSpeed="3dp"
+                    ProgressWheel:text="0%"
+                    ProgressWheel:textColor="#ff790b"
+                    ProgressWheel:textSize="26sp" />
+
+                <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="6">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            ProgressWheel:cardBackgroundColor="#e86868"
+                            ProgressWheel:cardCornerRadius="@dimen/_2sdp" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10sdp">
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nunrinoregular" />
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:id="@+id/txtTotalInternalMemory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nuntinobold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            ProgressWheel:cardBackgroundColor="#e3001b"
+                            ProgressWheel:cardCornerRadius="@dimen/_2sdp" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10sdp">
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/used"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nunrinoregular" />
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:id="@+id/txtAvailInternalMemory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nuntinobold" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_10sdp"
+                            ProgressWheel:cardBackgroundColor="#ffb0b0"
+                            ProgressWheel:cardCornerRadius="@dimen/_2sdp" />
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/_10sdp">
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/free"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nunrinoregular" />
+
+                            <TextView
+                                android:textSize="@dimen/_11ssp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:id="@+id/txtFreeInternalMemory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:fontFamily="@font/nuntinobold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CircularProgressIndicator
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/circular_progress"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    ProgressWheel:enableProgressAnimation="true"
+                    ProgressWheel:progressBackgroundColor="@color/pink"
+                    ProgressWheel:progressBackgroundStrokeWidth="17dp"
+                    ProgressWheel:progressCap="round"
+                    ProgressWheel:progressColor="#e3001b"
+                    ProgressWheel:progressStrokeWidth="17dp"
+                    ProgressWheel:startAngle="270"
+                    ProgressWheel:textColor="#e3001b" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/layourExternal"
+            android:background="@drawable/custom_head_tabstorage"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="External Memory Info"
+                android:textAlignment="center" />
+
+            <View
+                android:background="#ccc"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
+
+                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.progressWheel.ProgressWheel
+                    android:layout_gravity="left"
+                    android:id="@+id/pw_spinner_external"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    ProgressWheel:barColor="#ff790b"
+                    ProgressWheel:barLength="60dp"
+                    ProgressWheel:barWidth="9dp"
+                    ProgressWheel:rimColor="#e56b07"
+                    ProgressWheel:rimWidth="5dp"
+                    ProgressWheel:spinSpeed="3dp"
+                    ProgressWheel:text="0%"
+                    ProgressWheel:textColor="#ff790b"
+                    ProgressWheel:textSize="26sp" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#e56b07"
+                        android:gravity="left"
+                        android:id="@+id/txtTotalExternalMemory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#ff790b"
+                        android:gravity="left"
+                        android:id="@+id/txtAvailExternalMemory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:textSize="16sp"
+                        android:textColor="#e56b07"
+                        android:gravity="left"
+                        android:id="@+id/txtFreeExternalMemory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:singleLine="true" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/antivirus"
+            android:visibility="gone"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_margin="30dp"
+            android:src="@drawable/antivirus" />
+    </LinearLayout>
+
+    <TextView
+        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_gravity="bottom"
+        android:id="@+id/txt_scan"
+        android:background="@drawable/killbtn_sel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:text="Scan"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/nuntinobold" />
+</RelativeLayout>

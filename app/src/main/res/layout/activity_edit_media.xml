@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rela_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:padding="@dimen/_8sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/icon_back"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hom nay mot ngay that dep tro"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/img_info"
+            android:layout_toRightOf="@+id/img_back"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/nuntinobold" />
+
+        <ImageView
+            android:id="@+id/img_info"
+            android:padding="@dimen/_13sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:src="@drawable/img_infomation"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_giff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/l_bottom"
+        android:layout_below="@+id/rela_head" />
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/photoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:layout_above="@+id/l_bottom"
+        android:layout_below="@+id/rela_head" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/l_bottom"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/_20sdp"
+        android:paddingRight="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/img_like"
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/edit_fav"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/img_setwall"
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/edit_setim"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/edit_share"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/img_recycle"
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/edit_re"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/img_hide"
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/edit_hide"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

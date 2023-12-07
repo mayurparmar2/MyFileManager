@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="@dimen/_10sdp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:textColor="@color/white"
+        android:id="@+id/button_open_usage_setting"
+        android:background="@drawable/killbtn_sel"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/open_app_usage_setting" />
+
+    <RelativeLayout
+        android:id="@+id/relaytive_head"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/button_open_usage_setting">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/killbtn_hv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_span"
+                android:maxLines="1"
+                android:fontFamily="@font/nutinoremibold" />
+
+            <Spinner
+                android:id="@+id/spinner_time_span"
+                android:background="@android:color/transparent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                style="@style/customthemespiner" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/show_spiner"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/icon_spiner"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_app_usage"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="true"
+        android:layout_below="@+id/l_1"
+        app:layoutManager="LinearLayoutManager" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/l_up"
+        android:background="@drawable/custom_spiner"
+        android:padding="@dimen/_5sdp"
+        android:visibility="gone"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_alignTop="@+id/l_1"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            android:id="@+id/txt_dialy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Timespan Dialy"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            android:id="@+id/txt_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Timespan Weekly"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            android:id="@+id/txt_month"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Timespan Monthly"
+            android:fontFamily="@font/nunrinoregular" />
+
+        <TextView
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            android:id="@+id/txt_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Timespan Yearly"
+            android:fontFamily="@font/nunrinoregular" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/l_1"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button_open_usage_setting"
+        android:layout_alignParentRight="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@drawable/killbtn_hv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10">
+
+            <TextView
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/white"
+                android:ellipsize="end"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/time_span"
+                android:maxLines="1"
+                android:layout_weight="4"
+                android:fontFamily="@font/nunrinoregular" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:id="@+id/txt_spinerselected"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_3sdp"
+                android:text="Dialy"
+                android:layout_weight="4"
+                android:fontFamily="@font/nunrinoregular" />
+
+            <ImageView
+                android:id="@+id/img_dropup_layout"
+                android:padding="@dimen/_2sdp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_spiner"
+                android:layout_weight="2" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

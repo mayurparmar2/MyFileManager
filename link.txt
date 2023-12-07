@@ -1,0 +1,3 @@
+Link    : https://play.google.com/store/apps/details?id=com.filemanager.fileexplorer.myfile.cleanmaster.free
+Package : com.filemanager.fileexplorer.myfile.cleanmaster.free 
+version : 1.0

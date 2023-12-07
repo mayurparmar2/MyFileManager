@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@drawable/custom_head_tabstorage"
+    android:padding="@dimen/_5sdp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp">
+
+    <ImageView
+        android:id="@+id/imgTaskIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="5dp"
+        android:src="@drawable/rocket_icon" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:id="@+id/txtTaskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:fontFamily="@font/nutinoremibold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp">
+
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#316171"
+                android:id="@+id/txtTaskMemory"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+            <TextView
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#316171"
+                android:id="@+id/txtTaskCPU"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/chkTaskChecked"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="7dp" />
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/custom_head_tabstorage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/gif"
+        android:padding="@dimen/_2sdp"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:src="@drawable/iconrocket" />
+
+    <TextView
+        android:textSize="@dimen/_16ssp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:id="@+id/titile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:text="My file Manager"
+        android:layout_toRightOf="@+id/gif"
+        android:fontFamily="@font/nuntinobold"
+        android:paddingStart="@dimen/_5sdp" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:text="In Processing..."
+        android:layout_toRightOf="@+id/gif"
+        android:layout_below="@+id/titile"
+        android:fontFamily="@font/nunrinoregular"
+        android:paddingStart="@dimen/_5sdp" />
+</RelativeLayout>

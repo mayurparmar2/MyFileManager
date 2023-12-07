@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.demo.example">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER" />
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+    <uses-permission
+        android:name="android.permission.CLEAR_APP_CACHE"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/icon200"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RemiFileManager"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.SlideActivity"
+            android:exported="true"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.lookscreen.ChangePassActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.RamBooterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.progressWheel.Main"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.StatisticActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ClearMultilActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.fragment.test.AppUsageStatisticsActivity"
+            android:exported="true"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.LookActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.HideChoseOptionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.Edit_MediaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.Image_Video_Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.TestAnimationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.DocumnetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.ToastView"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus.AntivirusActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.RemiFileManager" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus.EulaActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.MainActivity"
+            android:exported="true"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.RecycleviewHeader"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.lookscreen.LockscreenActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ResulfActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.LaucherActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ExitActivity"
+            android:autoRemoveFromRecents="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoDisplay" />
+
+        <service android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus.KillNotificationsService" />
+
+        <receiver
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus.BootCompletedReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus.MonitorShieldService"
+            android:enabled="true" />
+
+
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities=getPackageName()+".provider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/provider_path" />-->
+<!--        </provider>-->
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="com.filemanager.fileexplorer.myfile.cleanmaster.free.provider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/provider_paths" />-->
+<!--        </provider>-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
+
+    </application>
+
+</manifest>

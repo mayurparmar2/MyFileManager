@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/custom_head_tabstorage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="Attention"
+        android:fontFamily="@font/nuntinobold" />
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/files_that_exist_in_the_recycle_bin_will_be_deleted_after_30_days"
+        android:fontFamily="@font/nuntinolight" />
+
+    <View
+        android:background="@color/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_10sdp" />
+
+    <TextView
+        android:textSize="@dimen/_15ssp"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:id="@+id/txt_dismiss"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="Got it!"
+        android:fontFamily="@font/nuntinobold" />
+</LinearLayout>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main_drawer"
+    android:background="@color/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/relaytive"
+            android:padding="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="0dp" />
+
+            <TextView
+                android:textSize="@dimen/_15ssp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/fileexplozer"
+                android:fontFamily="@font/nuntinobold" />
+
+            <ImageView
+                android:id="@+id/opend_drawer"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/icon_setting"
+                android:layout_alignParentLeft="true"
+                android:foregroundGravity="right" />
+
+            <ImageView
+                android:id="@+id/lauchericon"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/rocket_icon"
+                android:layout_alignParentRight="true"
+                android:foregroundGravity="right" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/custom_head_tabstorage"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_below="@+id/main_toolbar">
+
+                <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    android:id="@+id/txt_storages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Storage"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nuntinobold" />
+
+                <TextView
+                    android:textSize="@dimen/_12ssp"
+                    android:gravity="center"
+                    android:id="@+id/txt_file"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
+                    android:text="Files"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nuntinobold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:background="@drawable/custom_head_tabstorage"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_below="@+id/main_toolbar">
+
+                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.tablayout.TabView
+                    android:id="@+id/tabv_tab0"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    app:tabv_colorMain="#e3001b"
+                    app:tabv_colorSub="#ffffff"
+                    app:tabv_duration="250"
+                    app:tabv_padding="0dp"
+                    app:tabv_paddingSide="@dimen/_5sdp"
+                    app:tabv_textSize="@dimen/_12ssp"
+                    app:tabv_title="Storage;Files" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_activity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relaytive" />
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_gravity="start"
+        android:background="@drawable/custom_navigation_drawble"
+        android:fitsSystemWindows="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/minear"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical"
+                android:background="#f5f7fa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:src="@drawable/img_file_nv" />
+
+                <TextView
+                    android:textSize="@dimen/_13ssp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:text="File Manager "
+                    android:maxLines="1"
+                    android:fontFamily="@font/fontbold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_300sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:weightSum="5"
+                android:paddingStart="@dimen/_20sdp">
+
+                <RelativeLayout
+                    android:id="@+id/r_recyclerbin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_re"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/buttonrecycle"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_re"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Recycle"
+                        android:layout_toRightOf="@+id/img_re"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_re"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_sh"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/icon_share"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_sh"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Share"
+                        android:layout_toRightOf="@+id/img_sh"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_sh"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r_feed_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_fe"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/button_feedback"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_fe"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/feedback"
+                        android:layout_toRightOf="@+id/img_fe"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_fe"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_ra"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/button_rates"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_ra"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Rate Us"
+                        android:layout_toRightOf="@+id/img_ra"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_ra"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r_moreapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_moreapp"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/button_app"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_moreapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/more_apps"
+                        android:layout_toRightOf="@+id/img_moreapp"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_moreapp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/r_lan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp">
+
+                    <ImageView
+                        android:id="@+id/img_lan"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/provi"
+                        android:layout_centerVertical="true" />
+
+                    <TextView
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/black"
+                        android:gravity="clip_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:id="@+id/txt_lan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/privacy_policy"
+                        android:layout_toRightOf="@+id/img_lan"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/nunrinoregular"
+                        android:layout_marginStart="@dimen/_20sdp" />
+
+                    <View
+                        android:background="@color/backgrounditem"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.3dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img_lan"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="@dimen/_20sdp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

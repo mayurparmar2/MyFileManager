@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/custom_head_tabstorage"
+    android:paddingTop="@dimen/_15sdp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:id="@+id/titile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/titile_delete"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/nunrinoregular"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp" />
+
+    <View
+        android:id="@+id/v1"
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_below="@+id/titile" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_below="@+id/v1">
+
+        <TextView
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:id="@+id/txt_Cancel"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:text="Cancel"
+            android:layout_weight="1"
+            android:fontFamily="@font/fontbold" />
+
+        <View
+            android:background="@color/divider"
+            android:layout_width="0.5dp"
+            android:layout_height="@dimen/_40sdp" />
+
+        <TextView
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/color_txtdelete"
+            android:gravity="center"
+            android:id="@+id/txt_yes"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:text="@string/yes"
+            android:layout_weight="1"
+            android:fontFamily="@font/fontbold" />
+    </LinearLayout>
+</RelativeLayout>

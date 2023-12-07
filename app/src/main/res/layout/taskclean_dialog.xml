@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_bg"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/imgTaskIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/rocket_icon"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#089bd1"
+            android:gravity="left"
+            android:id="@+id/txtTaskTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/dialog_title"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <View
+        android:background="#c9c9c9"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:textSize="20sp"
+        android:textColor="#11b0ea"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/txtMessage"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_msg" />
+
+    <LinearLayout
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp">
+
+        <Button
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:id="@+id/btnTaskCancel"
+            android:background="@drawable/search_btn_sel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/btn_cancel"
+            android:layout_weight="1" />
+
+        <Button
+            android:textSize="22sp"
+            android:textColor="#ffffff"
+            android:id="@+id/btnTaskClean"
+            android:background="@drawable/killbtn_sel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="@string/btn_kill"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

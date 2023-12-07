@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/transparent"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/linearLayoutAdapter"
+        android:background="@drawable/custom_head_tabstorage"
+        android:padding="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:showDividers="middle">
+
+        <ImageView
+            android:id="@+id/iconAppIgnored"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/rocket_icon"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false"
+            android:layout_weight="0.03" />
+
+        <LinearLayout
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:id="@+id/nameAppIgnored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="2dp"
+                android:text="You are fucking killing me"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:fontFamily="@font/nuntinolight" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

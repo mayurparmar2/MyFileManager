@@ -1,0 +1,62 @@
+apply plugin: 'com.android.application'
+android {
+    namespace 'com.demo.example'
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.demo.example"
+        minSdkVersion 26
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+//    buildFeatures{
+//        dataBinding = true
+//        viewBinding true
+//    }
+
+}
+dependencies {
+    implementation project(':animatoolib')
+    implementation project(':library')
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.7.0'
+
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.airbnb.android:lottie:5.2.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:3.1.0'
+    implementation 'com.daimajia.androidanimations:library:2.4@aar'
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'joda-time:joda-time:2.12.5'
+    implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
+    implementation 'com.github.sujithkanna:smileyrating:2.0.0'
+    implementation 'com.github.zhpanvip:viewpagerindicator:1.2.3'
+
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="10">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Storage Statistic"
+            android:fontFamily="@font/nutinoremibold" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:padding="@dimen/_13sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/icon_back" />
+    </RelativeLayout>
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5" />
+
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/sd_pie_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.5" />
+</LinearLayout>
