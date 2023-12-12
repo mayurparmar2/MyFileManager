@@ -568,7 +568,7 @@ public class Edit_MediaActivity extends AppCompatActivity {
         View inflate = getLayoutInflater().inflate(R.layout.toast_custom_layout, (ViewGroup) findViewById(R.id.toast_layout_root));
         ((TextView) inflate.findViewById(R.id.txt_title)).setText("Completed!");
         Toast toast = new Toast(getApplicationContext());
-        toast.setDuration(0);
+        toast.setDuration(Toast.LENGTH_SHORT);
         toast.setView(inflate);
         toast.show();
     }

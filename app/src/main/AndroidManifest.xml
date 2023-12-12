@@ -126,6 +126,10 @@
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ResulfActivity2"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.LaucherActivity"
             android:exported="true"
             android:screenOrientation="portrait" />

@@ -384,42 +384,28 @@ public class Data_Manager {
     }
 
     public void setDocs() {
-        String[] strArr;
+        String[] extensions = {"pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "txt", "html"};
         this.mContext.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE"));
-        this.date_and_time = new ArrayList();
-        this.name = new ArrayList();
+        this.date_and_time = new ArrayList<>();
+        this.name = new ArrayList<>();
         this.file_dtos = new ArrayList<>();
-        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf");
-        String mimeTypeFromExtension2 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc");
-        String mimeTypeFromExtension3 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx");
-        String mimeTypeFromExtension4 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls");
-        String mimeTypeFromExtension5 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx");
-        String mimeTypeFromExtension6 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt");
-        String mimeTypeFromExtension7 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx");
-        String mimeTypeFromExtension8 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt");
-        String mimeTypeFromExtension9 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("html");
-        if (Build.VERSION.SDK_INT <= 28) {
-            strArr = new String[]{"_data", "mime_type", "_id"};
-        } else {
-            strArr = new String[]{"_data", "mime_type", "volume_name", "_id"};
-        }
-        int i = 0;
-        Cursor query = this.mContext.getContentResolver().query(MediaStore.Files.getContentUri("external"), strArr, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{mimeTypeFromExtension, mimeTypeFromExtension2, mimeTypeFromExtension3, mimeTypeFromExtension4, mimeTypeFromExtension5, mimeTypeFromExtension6, mimeTypeFromExtension7, mimeTypeFromExtension8, mimeTypeFromExtension9}, null);
+        String[] projection = (Build.VERSION.SDK_INT <= 28) ? new String[]{"_data", "mime_type", "_id"} : new String[]{"_data", "mime_type", "volume_name", "_id"};
+        Cursor query = this.mContext.getContentResolver().query(MediaStore.Files.getContentUri("external"), projection, "mime_type IN (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", extensions, null);
         this.files = new File[query.getCount()];
-        query.moveToFirst();
-        if (query.getCount() != 0) {
+        int i = 0;
+        if (query.moveToFirst()) {
             do {
                 this.files[i] = new File(query.getString(query.getColumnIndexOrThrow("_data")));
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy | HH:mm:ss");
-                this.date_and_time.add(simpleDateFormat.format(Long.valueOf(this.files[i].lastModified())));
+                this.date_and_time.add(simpleDateFormat.format(this.files[i].lastModified()));
                 this.name.add(this.files[i].getName());
                 File_DTO file_DTO = new File_DTO();
                 file_DTO.setPath(this.files[i].getPath());
-                file_DTO.setDate(simpleDateFormat.format(Long.valueOf(this.files[i].lastModified())));
+                file_DTO.setDate(simpleDateFormat.format(this.files[i].lastModified()));
                 file_DTO.setName(this.files[i].getName());
                 file_DTO.setId(query.getString(query.getColumnIndexOrThrow("_id")));
                 try {
-                    file_DTO.setVolumname(query.getString(query.getColumnIndex("volume_name")));
+                    file_DTO.setVolumname(query.getString((int)query.getColumnIndex("volume_name")));
                 } catch (Exception unused) {
                     file_DTO.setVolumname("");
                 }
@@ -429,10 +415,62 @@ public class Data_Manager {
                 this.file_dtos.add(file_DTO);
                 i++;
             } while (query.moveToNext());
-            return;
+        } else {
+            Log.e("TAG", "setDocs: ");
         }
-        Log.d("TAG", "setDocs: ");
+        query.close();
     }
+
+//    public void setDocs() {
+//        String[] strArr;
+//        this.mContext.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE"));
+//        this.date_and_time = new ArrayList();
+//        this.name = new ArrayList();
+//        this.file_dtos = new ArrayList<>();
+//        String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf");
+//        String mimeTypeFromExtension2 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc");
+//        String mimeTypeFromExtension3 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx");
+//        String mimeTypeFromExtension4 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls");
+//        String mimeTypeFromExtension5 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx");
+//        String mimeTypeFromExtension6 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt");
+//        String mimeTypeFromExtension7 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx");
+//        String mimeTypeFromExtension8 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt");
+//        String mimeTypeFromExtension9 = MimeTypeMap.getSingleton().getMimeTypeFromExtension("html");
+//        if (Build.VERSION.SDK_INT <= 28) {
+//            strArr = new String[]{"_data", "mime_type", "_id"};
+//        } else {
+//            strArr = new String[]{"_data", "mime_type", "volume_name", "_id"};
+//        }
+//        int i = 0;
+//        Cursor query = this.mContext.getContentResolver().query(MediaStore.Files.getContentUri("external"), strArr, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{mimeTypeFromExtension, mimeTypeFromExtension2, mimeTypeFromExtension3, mimeTypeFromExtension4, mimeTypeFromExtension5, mimeTypeFromExtension6, mimeTypeFromExtension7, mimeTypeFromExtension8, mimeTypeFromExtension9}, null);
+//        this.files = new File[query.getCount()];
+//        query.moveToFirst();
+//        if (query.getCount() != 0) {
+//            do {
+//                this.files[i] = new File(query.getString(query.getColumnIndexOrThrow("_data")));
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy | HH:mm:ss");
+//                this.date_and_time.add(simpleDateFormat.format(Long.valueOf(this.files[i].lastModified())));
+//                this.name.add(this.files[i].getName());
+//                File_DTO file_DTO = new File_DTO();
+//                file_DTO.setPath(this.files[i].getPath());
+//                file_DTO.setDate(simpleDateFormat.format(Long.valueOf(this.files[i].lastModified())));
+//                file_DTO.setName(this.files[i].getName());
+//                file_DTO.setId(query.getString(query.getColumnIndexOrThrow("_id")));
+//                try {
+//                    file_DTO.setVolumname(query.getString(query.getColumnIndex("volume_name")));
+//                } catch (Exception unused) {
+//                    file_DTO.setVolumname("");
+//                }
+//                this.sizedoccument += this.files[i].length();
+//                file_DTO.setSize(new Ultil(this.mContext).bytesToHuman(this.files[i].length()));
+//                file_DTO.setMinetype(query.getString(query.getColumnIndexOrThrow("mime_type")));
+//                this.file_dtos.add(file_DTO);
+//                i++;
+//            } while (query.moveToNext());
+//            return;
+//        }
+//        Log.d("TAG", "setDocs: ");
+//    }
 
     public ArrayList<File_DTO> getzipwithMediastore() {
         ArrayList<File_DTO> arrayList = new ArrayList<>();
@@ -457,7 +495,7 @@ public class Data_Manager {
                 i++;
             } while (query.moveToNext());
         } else {
-            Log.d("TAG", "getzipwithMediastore: ");
+            Log.e("TAG", "getzipwithMediastore: ");
         }
         return arrayList;
     }
@@ -625,7 +663,7 @@ public class Data_Manager {
         this.drawables = new ArrayList<>();
         ArrayList<File_DTO> arrayList = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= 26) {
-            LauncherApps launcherApps = (LauncherApps) context.getSystemService("launcherapps");
+            LauncherApps launcherApps = (LauncherApps) context.getSystemService(Context.LAUNCHER_APPS_SERVICE);
             for (UserHandle userHandle : launcherApps.getProfiles()) {
                 for (LauncherActivityInfo launcherActivityInfo : launcherApps.getActivityList(null, userHandle)) {
                     String packageName = launcherActivityInfo.getComponentName().getPackageName();

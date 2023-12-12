@@ -1,6 +1,8 @@
 package com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +36,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class StatisticActivity extends AppCompatActivity {
@@ -84,7 +87,7 @@ public class StatisticActivity extends AppCompatActivity {
         this.img_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StatisticActivity.this.m63xa77a9205(view);
+                m63xa77a9205(view);
             }
         });
     }
@@ -156,151 +159,295 @@ public class StatisticActivity extends AppCompatActivity {
     }
 
     public String[] getExternalStorageDirectories() {
-        byte[] bArr = new byte[0];
-        boolean equals;
-        ArrayList arrayList = new ArrayList();
-        if (Build.VERSION.SDK_INT >= 19) {
-            File[] externalFilesDirs = getExternalFilesDirs(null);
-            String lowerCase = Environment.getExternalStorageDirectory().getAbsolutePath().toLowerCase();
-            for (File file : externalFilesDirs) {
-                if (file != null) {
-                    String str = file.getPath().split("/Android")[0];
-                    if (!str.toLowerCase().startsWith(lowerCase)) {
-                        if (Build.VERSION.SDK_INT >= 21) {
-                            equals = Environment.isExternalStorageRemovable(file);
-                        } else {
-                            equals = "mounted".equals(EnvironmentCompat.getStorageState(file));
-                        }
-                        if (equals) {
-                            arrayList.add(str);
-                        }
-                    }
+        String LOG_TAG = "SDCARD";
+        List<String> results = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) { //Method 1 for KitKat & above
+            File[] externalDirs = getExternalFilesDirs(null);
+
+            for (File file : externalDirs) {
+                String path = file.getPath().split("/Android")[0];
+
+                boolean addPath = false;
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    addPath = Environment.isExternalStorageRemovable(file);
+                }
+                else{
+                    addPath = Environment.MEDIA_MOUNTED.equals(EnvironmentCompat.getStorageState(file));
+                }
+
+                if(addPath){
+                    results.add(path);
                 }
             }
         }
-        if (arrayList.isEmpty()) {
-            String str2 = "";
+
+        if(results.isEmpty()) { //Method 2 for all versions
+            // better variation of: http://stackoverflow.com/a/40123073/5002496
+            String output = "";
             try {
-                Process start = new ProcessBuilder(new String[0]).command("mount | grep /dev/block/vold").redirectErrorStream(true).start();
-                start.waitFor();
-                InputStream inputStream = start.getInputStream();
-                while (inputStream.read(new byte[1024]) != -1) {
-                    str2 = str2 + new String(bArr);
+                final Process process = new ProcessBuilder().command("mount | grep /dev/block/vold")
+                        .redirectErrorStream(true).start();
+                process.waitFor();
+                final InputStream is = process.getInputStream();
+                final byte[] buffer = new byte[1024];
+                while (is.read(buffer) != -1) {
+                    output = output + new String(buffer);
                 }
-                inputStream.close();
-            } catch (Exception e) {
+                is.close();
+            } catch (final Exception e) {
                 e.printStackTrace();
             }
-            if (!str2.trim().isEmpty()) {
-                for (String str3 : str2.split("\n")) {
-                    arrayList.add(str3.split(" ")[2]);
+            if(!output.trim().isEmpty()) {
+                String devicePoints[] = output.split("\n");
+                for(String voldPoint: devicePoints) {
+                    results.add(voldPoint.split(" ")[2]);
                 }
             }
         }
-        if (Build.VERSION.SDK_INT >= 23) {
-            int i = 0;
-            while (i < arrayList.size()) {
-                if (!((String) arrayList.get(i)).toLowerCase().matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {
-                    Log.d("LOG_TAG", ((String) arrayList.get(i)) + " might not be extSDcard");
-                    arrayList.remove(i);
-                    i += -1;
+        //Below few lines is to remove paths which may not be external memory card, like OTG (feel free to comment them out)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            for (int i = 0; i < results.size(); i++) {
+                if (!results.get(i).toLowerCase().matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {
+                    Log.d(LOG_TAG, results.get(i) + " might not be extSDcard");
+                    results.remove(i--);
                 }
-                i++;
             }
         } else {
-            int i2 = 0;
-            while (i2 < arrayList.size()) {
-                if (!((String) arrayList.get(i2)).toLowerCase().contains("ext") && !((String) arrayList.get(i2)).toLowerCase().contains("sdcard")) {
-                    Log.d("LOG_TAG", ((String) arrayList.get(i2)) + " might not be extSDcard");
-                    arrayList.remove(i2);
-                    i2 += -1;
+            for (int i = 0; i < results.size(); i++) {
+                if (!results.get(i).toLowerCase().contains("ext") && !results.get(i).toLowerCase().contains("sdcard")) {
+                    Log.d(LOG_TAG, results.get(i)+" might not be extSDcard");
+                    results.remove(i--);
                 }
-                i2++;
             }
         }
-        String[] strArr = new String[arrayList.size()];
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            strArr[i3] = (String) arrayList.get(i3);
-        }
-        return strArr;
+
+        String[] storageDirectories = new String[results.size()];
+        for(int i=0; i<results.size(); ++i) storageDirectories[i] = results.get(i);
+
+        return storageDirectories;
     }
+
+//    public String[] getExternalStorageDirectories() {
+//        byte[] bArr = new byte[0];
+//        boolean equals;
+//        ArrayList arrayList = new ArrayList();
+//        if (Build.VERSION.SDK_INT >= 19) {
+//            File[] externalFilesDirs = getExternalFilesDirs(null);
+//            String lowerCase = Environment.getExternalStorageDirectory().getAbsolutePath().toLowerCase();
+//            for (File file : externalFilesDirs) {
+//                if (file != null) {
+//                    String str = file.getPath().split("/Android")[0];
+//                    if (!str.toLowerCase().startsWith(lowerCase)) {
+//                        if (Build.VERSION.SDK_INT >= 21) {
+//                            equals = Environment.isExternalStorageRemovable(file);
+//                        } else {
+//                            equals = "mounted".equals(EnvironmentCompat.getStorageState(file));
+//                        }
+//                        if (equals) {
+//                            arrayList.add(str);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        if (arrayList.isEmpty()) {
+//            String str2 = "";
+//            try {
+//                Process start = new ProcessBuilder(new String[0]).command("mount | grep /dev/block/vold").redirectErrorStream(true).start();
+//                start.waitFor();
+//                InputStream inputStream = start.getInputStream();
+//                while (inputStream.read(new byte[1024]) != -1) {
+//                    str2 = str2 + new String(bArr);
+//                }
+//                inputStream.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            if (!str2.trim().isEmpty()) {
+//                for (String str3 : str2.split("\n")) {
+//                    arrayList.add(str3.split(" ")[2]);
+//                }
+//            }
+//        }
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            int i = 0;
+//            while (i < arrayList.size()) {
+//                if (!((String) arrayList.get(i)).toLowerCase().matches(".*[0-9a-f]{4}[-][0-9a-f]{4}")) {
+//                    Log.d("LOG_TAG", ((String) arrayList.get(i)) + " might not be extSDcard");
+//                    arrayList.remove(i);
+//                    i += -1;
+//                }
+//                i++;
+//            }
+//        } else {
+//            int i2 = 0;
+//            while (i2 < arrayList.size()) {
+//                if (!((String) arrayList.get(i2)).toLowerCase().contains("ext") && !((String) arrayList.get(i2)).toLowerCase().contains("sdcard")) {
+//                    Log.d("LOG_TAG", ((String) arrayList.get(i2)) + " might not be extSDcard");
+//                    arrayList.remove(i2);
+//                    i2 += -1;
+//                }
+//                i2++;
+//            }
+//        }
+//        String[] strArr = new String[arrayList.size()];
+//        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+//            strArr[i3] = (String) arrayList.get(i3);
+//        }
+//        return strArr;
+//    }
 
 
     class BackgroundSizeCalculation extends Thread {
-        BackgroundSizeCalculation() {
-        }
-
-
         @Override
-
         public void run() {
-            Cursor query;
-            String str;
-            Cursor query2;
-            String str2 = null;
-            Cursor query3 = StatisticActivity.this.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
-            query3.moveToFirst();
+            Cursor cursor;
+            String[] proj = new String[]{MediaStore.Images.Media.SIZE
+                    , MediaStore.Images.Media.DATA};
+            cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, proj, null, null, null);
+            cursor.moveToFirst();
             do {
-                if (query3.getString(query3.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
-                    Log.d("TAG", "run: ");
-                } else {
-                    StatisticActivity.this.sdimagesSize += Long.parseLong(query3.getString(query3.getColumnIndexOrThrow("_size")));
-                }
-            } while (query3.moveToNext());
-            Cursor query4 = StatisticActivity.this.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
-            query4.moveToFirst();
-            if (query4.getCount() != 0) {
+                if (cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)).contains(Environment.getExternalStorageDirectory().getPath()))
+                    imagesSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+                else
+                    sdimagesSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+            } while (cursor.moveToNext());
+            String[] proj_audio = new String[]{MediaStore.Audio.Media.SIZE
+                    , MediaStore.Audio.Media.DATA};
+            cursor = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, proj_audio, null, null, null);
+            cursor.moveToFirst();
+            if (cursor.getCount() != 0) {
                 do {
-                    if (query4.getString(query4.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
-                        Log.d("TAG", "run: ");
-                    } else {
-                        StatisticActivity.this.sdaudioSize += Long.parseLong(query4.getString(query4.getColumnIndexOrThrow("_size")));
-                    }
-                } while (query4.moveToNext());
-                query = StatisticActivity.this.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
-                query.moveToFirst();
-                if (query.getCount() == 0) {
-                    do {
-                        if (query.getString(query.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
-                            Log.d(UStats.TAG, "run: ");
-                        } else {
-                            StatisticActivity.this.sdvideoSize += Long.parseLong(query.getString(query.getColumnIndexOrThrow("_size")));
-                        }
-                    } while (query.moveToNext());
-                    str = "TAG";
-                    query2 = StatisticActivity.this.getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_data", "_size"}, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("html")}, null);
-                    query2.moveToFirst();
-                    while (true) {
-                        if (!query2.getString(query2.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
-                            str2 = str;
-                            Log.d(str2, "run: ");
-                        } else {
-                            str2 = str;
-                            StatisticActivity.this.sddocsSize += Long.parseLong(query2.getString(query2.getColumnIndexOrThrow("_size")));
-                        }
-                        if (query2.moveToNext()) {
-                            return;
-                        }
-                        str = str2;
-                    }
-                } else {
-                    str = "TAG";
-                    query2 = StatisticActivity.this.getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_data", "_size"}, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("html")}, null);
-                    query2.moveToFirst();
-                    while (true) {
-                        if (!query2.getString(query2.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
-                        }
-                        if (query2.moveToNext()) {
-                        }
-                        str = str2;
-                    }
-                }
-            } else {
-                query = StatisticActivity.this.getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
-                query.moveToFirst();
-                if (query.getCount() == 0) {
-                }
+                    if (cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)).contains(Environment.getExternalStorageDirectory().getPath()))
+                        audioSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+                    else
+                        sdaudioSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)));
+                } while (cursor.moveToNext());
             }
+            String[] proj_video = new String[]{MediaStore.Video.Media.SIZE
+                    , MediaStore.Video.Media.DATA};
+            cursor = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, proj_video, null, null, null);
+            cursor.moveToFirst();
+            if (cursor.getCount() != 0) {
+                do {
+                    if (cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)).contains(Environment.getExternalStorageDirectory().getPath()))
+                        videoSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
+                    else
+                        sdvideoSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Video.Media.SIZE)));
+                } while (cursor.moveToNext());
+            }
+
+
+            String pdf = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf");
+            String doc = MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc");
+            String docx = MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx");
+            String xls = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls");
+            String xlsx = MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx");
+            String ppt = MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt");
+            String pptx = MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx");
+            String txt = MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt");
+            String rtx = MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtx");
+            String rtf = MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtf");
+            String html = MimeTypeMap.getSingleton().getMimeTypeFromExtension("html");
+
+            Uri table = MediaStore.Files.getContentUri("external");
+            String[] column = {MediaStore.Files.FileColumns.DATA, MediaStore.Files.FileColumns.SIZE};
+            String where = MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?"
+                    + " OR " + MediaStore.Files.FileColumns.MIME_TYPE + "=?";
+            String[] args = new String[]{pdf, doc, docx, xls, xlsx, ppt, pptx, txt, rtx, rtf, html};
+
+            cursor = getContentResolver().query(table, column, where, args, null);
+            cursor.moveToFirst();
+            do {
+                if (cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA)).contains(Environment.getExternalStorageDirectory().getPath()))
+                    docsSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)));
+                else
+                    sddocsSize += Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.SIZE)));
+            } while (cursor.moveToNext());
         }
     }
+
+//    class BackgroundSizeCalculation extends Thread {
+//        BackgroundSizeCalculation() {
+//        }
+//        @Override
+//        public void run() {
+//            Cursor query;
+//            String str;
+//            Cursor query2;
+//            String str2 = null;
+//            Cursor query3 = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
+//            query3.moveToFirst();
+//            do {
+//                if (query3.getString(query3.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
+//                    Log.d("TAG", "run: ");
+//                } else {
+//                    sdimagesSize += Long.parseLong(query3.getString(query3.getColumnIndexOrThrow("_size")));
+//                }
+//            } while (query3.moveToNext());
+//            Cursor query4 = getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
+//            query4.moveToFirst();
+//            if (query4.getCount() != 0) {
+//                do {
+//                    if (query4.getString(query4.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
+//                        Log.d("TAG", "run: ");
+//                    } else {
+//                        sdaudioSize += Long.parseLong(query4.getString(query4.getColumnIndexOrThrow("_size")));
+//                    }
+//                } while (query4.moveToNext());
+//                query = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
+//                query.moveToFirst();
+//                if (query.getCount() == 0) {
+//                    do {
+//                        if (query.getString(query.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
+//                            Log.d(UStats.TAG, "run: ");
+//                        } else {
+//                            sdvideoSize += Long.parseLong(query.getString(query.getColumnIndexOrThrow("_size")));
+//                        }
+//                    } while (query.moveToNext());
+//                    str = "TAG";
+//                    query2 = getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_data", "_size"}, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("html")}, null);
+//                    query2.moveToFirst();
+//                    while (true) {
+//                        if (!query2.getString(query2.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
+//                            str2 = str;
+//                            Log.d(str2, "run: ");
+//                        } else {
+//                            str2 = str;
+//                            sddocsSize += Long.parseLong(query2.getString(query2.getColumnIndexOrThrow("_size")));
+//                        }
+//                        if (query2.moveToNext()) {
+//                            return;
+//                        }
+//                        str = str2;
+//                    }
+//                } else {
+//                    str = "TAG";
+//                    query2 = getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_data", "_size"}, "mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=? OR mime_type=?", new String[]{MimeTypeMap.getSingleton().getMimeTypeFromExtension("pdf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("doc"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("docx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xls"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("xlsx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("ppt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("pptx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("txt"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtx"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("rtf"), MimeTypeMap.getSingleton().getMimeTypeFromExtension("html")}, null);
+//                    query2.moveToFirst();
+//                    while (true) {
+//                        if (!query2.getString(query2.getColumnIndexOrThrow("_data")).contains(Environment.getExternalStorageDirectory().getPath())) {
+//                        }
+//                        if (query2.moveToNext()) {
+//                        }
+//                        str = str2;
+//                    }
+//                }
+//            } else {
+//                query = getContentResolver().query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_data"}, null, null, null);
+//                query.moveToFirst();
+//                if (query.getCount() == 0) {
+//                }
+//            }
+//        }
+//    }
 }

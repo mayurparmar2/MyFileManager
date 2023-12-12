@@ -6,12 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.DTO.File_DTO;
-
 import java.util.ArrayList;
 
-
+/* loaded from: classes.dex */
 public class FavoritSongs {
     private String SQL_DELETE_ENTRIES;
     Context context;
@@ -70,6 +68,12 @@ public class FavoritSongs {
         SQLiteDatabase sQLiteDatabase = this.db;
         String str = this.TABLE_NAME;
         String[] strArr = this.ALL_KEYS;
+        Log.e("MTAG", "db" +this.db);
+        Log.e("MTAG", "TABLE_NAME" +this.TABLE_NAME);
+        Log.e("MTAG", "ALL_KEYS" +this.ALL_KEYS);
+        Log.e("MTAG", "ALL_KEYS" +this.ALL_KEYS);
+
+
         Cursor query = sQLiteDatabase.query(str, strArr, null, null, null, null, this.COLUMN_NAME_ID + " DESC");
         ArrayList<File_DTO> arrayList = new ArrayList<>();
         if (query.moveToFirst()) {
@@ -184,24 +188,25 @@ public class FavoritSongs {
         return query;
     }
 
-
-    private class ReaderDB extends SQLiteOpenHelper {
+    /* JADX INFO: Access modifiers changed from: private */
+    /* loaded from: classes.dex */
+    public class ReaderDB extends SQLiteOpenHelper {
         ReaderDB(Context context) {
             super(context, "Favs.db", (SQLiteDatabase.CursorFactory) null, 1);
         }
 
-        @Override
+        @Override // android.database.sqlite.SQLiteOpenHelper
         public void onCreate(SQLiteDatabase sQLiteDatabase) {
             sQLiteDatabase.execSQL(FavoritSongs.this.SQL_CREATE_ENTRIES);
         }
 
-        @Override
+        @Override // android.database.sqlite.SQLiteOpenHelper
         public void onUpgrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
             sQLiteDatabase.execSQL(FavoritSongs.this.SQL_DELETE_ENTRIES);
             onCreate(sQLiteDatabase);
         }
 
-        @Override
+        @Override // android.database.sqlite.SQLiteOpenHelper
         public void onDowngrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
             onUpgrade(sQLiteDatabase, i, i2);
         }

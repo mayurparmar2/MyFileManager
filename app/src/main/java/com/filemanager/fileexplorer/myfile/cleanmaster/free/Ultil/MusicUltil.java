@@ -28,10 +28,6 @@ public class MusicUltil {
     @SuppressLint("Range")
     public ArrayList<File_DTO> getdatafromDevice() {
         int i;
-        for (String s : new String[]{""}) {
-
-        }
-
         this.file_dtos = new ArrayList<>();
         Cursor query = this.context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"_size", "_id", "date_modified", "date_added", "duration", "album", "_display_name", "_data", "title", "artist", "album", "album_id"}, "is_music != 0", null, null);
         if (query != null) {

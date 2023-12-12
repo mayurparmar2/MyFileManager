@@ -38,6 +38,7 @@ import com.chad.library.adapter.base.animation.ScaleInAnimation;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.DocumnetActivity;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.LookActivity;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ResulfActivity;
+import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.ResulfActivity2;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CircularProgressIndicator;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.DTO.File_DTO;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Iinterface.CallbackFav;
@@ -185,129 +186,129 @@ public class StoreFragment extends Fragment implements Recent_Adapter.OnClickIte
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long j) {
                 int unused = StoreFragment.curent = i;
-                StoreFragment.this.setmemory(i);
+                setmemory(i);
             }
         });
         this.launcher = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult activityResult) {
                 if (activityResult.getResultCode() == -1) {
-                    Toast.makeText(StoreFragment.this.getContext(), "Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Delete", Toast.LENGTH_SHORT).show();
                 }
             }
         });
         this.linearLayout_music.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity2.class);
                 intent.putExtra("nameitem", "music");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+//                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity2.class);
                 intent.putExtra("nameitem", "images");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_video.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity2.class);
                 intent.putExtra("nameitem", "video");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_Document.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StoreFragment.this.getActivity().startActivity(new Intent(StoreFragment.this.getContext(), DocumnetActivity.class));
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(new Intent(getContext(), DocumnetActivity.class));
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         externalMemoryAvailable(getActivity());
         this.linearLayout_app.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "app");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_dowload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "dowload");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_zip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "zip");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_apk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "apk");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.linearLayout_newfiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "newfile");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.l_favourite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "fav");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.l_recycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "recycle");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.l_hide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                StoreFragment.this.getActivity().startActivity(new Intent(StoreFragment.this.getContext(), LookActivity.class));
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(new Intent(getContext(), LookActivity.class));
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         this.txt_viewallfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StoreFragment.this.getContext(), ResulfActivity.class);
+                Intent intent = new Intent(getContext(), ResulfActivity.class);
                 intent.putExtra("nameitem", "recent");
-                StoreFragment.this.getActivity().startActivity(intent);
-                Animatoo.animateSwipeLeft(StoreFragment.this.getContext());
+                getActivity().startActivity(intent);
+                //Animatoo.animateSwipeLeft(getContext());
             }
         });
         RecentView();
@@ -326,9 +327,8 @@ public class StoreFragment extends Fragment implements Recent_Adapter.OnClickIte
     private void RecentView() {
         new Ultil(getContext()).checkrecent_fileExist();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, true));
-        Recent_Adapter recent_Adapter = new Recent_Adapter(getContext(), this);
-        this.recent_adapter = recent_Adapter;
-        recent_Adapter.setList(this.file_dtos_recent);
+        this.recent_adapter  = new Recent_Adapter(getContext(), this);
+        this.recent_adapter .setList(this.file_dtos_recent);
         this.recent_adapter.setAdapterAnimation(new ScaleInAnimation());
         this.recyclerView.setAdapter(this.recent_adapter);
     }
@@ -454,71 +454,51 @@ public class StoreFragment extends Fragment implements Recent_Adapter.OnClickIte
         int tt_music;
         int tt_re;
         int tt_video;
-
-        public Updaterecent() {
-        }
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            this.data_manager = new Data_Manager(StoreFragment.this.getContext());
+            this.data_manager = new Data_Manager(getContext());
         }
-
-
         @Override
         public String doInBackground(Void... voidArr) {
-            new Ultil(StoreFragment.this.getContext()).checkrecent_fileExist();
-            this.tt_image = new Image_Ultil(StoreFragment.this.getActivity()).allImage().size();
-            this.tt_video = new Video_Ultil(StoreFragment.this.getContext()).getallvideo().size();
-            this.tt_music = new MusicUltil(StoreFragment.this.getContext()).allsong().size();
+            new Ultil(getContext()).checkrecent_fileExist();
+            this.tt_image = new Image_Ultil(getActivity()).allImage().size();
+            this.tt_video = new Video_Ultil(getContext()).getallvideo().size();
+            this.tt_music = new MusicUltil(getContext()).allsong().size();
             this.data_manager.setDocs();
             this.tt_doc = this.data_manager.getfilepdf().size() + this.data_manager.getfidocx().size() + this.data_manager.getfileppt().size() + this.data_manager.getfiletxt().size() + this.data_manager.getfilexls().size();
-            this.tt_app = this.data_manager.readAllAppssss(StoreFragment.this.getContext()).size();
+            this.tt_app = this.data_manager.readAllAppssss(getContext()).size();
             this.tt_apk_ = this.data_manager.getallapp().size();
             this.tt_dowload = this.data_manager.filesDowload().size();
-            this.tt_re = StoreFragment.this.setRecylerView().size();
-            StoreFragment.this.tt_zip = this.data_manager.getzipwithMediastore().size();
-            if (StoreFragment.this.recent_adapter != null) {
-                StoreFragment storeFragment = StoreFragment.this;
-                storeFragment.file_dtos_recent = storeFragment.ultil.getallfileRecent();
+            this.tt_re = setRecylerView().size();
+            tt_zip = this.data_manager.getzipwithMediastore().size();
+            if (recent_adapter != null) {
+                file_dtos_recent = ultil.getallfileRecent();
                 return "aa";
             }
             return "aa";
         }
-
-
         @Override
         public void onPostExecute(String str) {
             super.onPostExecute(str);
-            FavoritSongs favoritSongs = new FavoritSongs(StoreFragment.this.getContext());
+            FavoritSongs favoritSongs = new FavoritSongs(getContext());
             favoritSongs.open();
             int size = favoritSongs.getAllRows().size();
             favoritSongs.close();
-            TextView textView = StoreFragment.this.t_countimg;
-            textView.setText("" + this.tt_image);
-            TextView textView2 = StoreFragment.this.t_coutvidep;
-            textView2.setText("" + this.tt_video);
-            TextView textView3 = StoreFragment.this.t_countmusic;
-            textView3.setText("" + this.tt_music);
-            TextView textView4 = StoreFragment.this.t_count_document;
-            textView4.setText("" + this.tt_doc);
-            TextView textView5 = StoreFragment.this.t_countzip;
-            textView5.setText("" + StoreFragment.this.tt_zip);
-            TextView textView6 = StoreFragment.this.t_countapp;
-            textView6.setText("" + this.tt_app);
-            TextView textView7 = StoreFragment.this.t_countapk;
-            textView7.setText("" + this.tt_apk_);
-            TextView textView8 = StoreFragment.this.t_count_dowload;
-            textView8.setText("" + this.tt_dowload);
-            TextView textView9 = StoreFragment.this.t_count_fav;
-            textView9.setText("" + size);
-            TextView textView10 = StoreFragment.this.t_countrecycle;
-            textView10.setText("" + this.tt_re);
-            TextView textView11 = StoreFragment.this.t_newfile;
-            textView11.setText("" + this.data_manager.getallfileindecive().size());
-            new Ultil(StoreFragment.this.getContext()).checkrecent_fileExist();
-            StoreFragment.this.recent_adapter.setList(StoreFragment.this.file_dtos_recent);
-            StoreFragment.this.recent_adapter.notifyDataSetChanged();
+            t_countimg.setText("" + this.tt_image);
+            t_coutvidep.setText("" + this.tt_video);
+            t_countmusic.setText("" + this.tt_music);
+            t_count_document.setText("" + this.tt_doc);
+            t_countzip.setText("" + tt_zip);
+            t_countapp.setText("" + this.tt_app);
+            t_countapk.setText("" + this.tt_apk_);
+            t_count_dowload.setText("" + this.tt_dowload);
+            t_count_fav.setText("" + size);
+            t_countrecycle.setText("" + this.tt_re);
+            t_newfile.setText("" + this.data_manager.getallfileindecive().size());
+            new Ultil(getContext()).checkrecent_fileExist();
+            recent_adapter.setList(file_dtos_recent);
+            recent_adapter.notifyDataSetChanged();
         }
     }
 }

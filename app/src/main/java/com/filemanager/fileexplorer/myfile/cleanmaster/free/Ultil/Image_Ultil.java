@@ -37,36 +37,6 @@ public class Image_Ultil {
     public Image_Ultil(Context context) {
         this.context = context;
     }
-
-    //    private void getdatafromDevice() {
-//        new String[]{""};
-//        String[] strArr = {"_size", "_data", "_id", "date_added", "duration", "album", "_display_name", "_data", "title", "artist", "album", "date_modified", "bucket_display_name"};
-//        Cursor query = this.context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, strArr, "is_download != 0ANDis_drm != 0", null, null);
-//        if (query != null) {
-//            if (query.moveToFirst()) {
-//                do {
-//                    if (!query.getString(query.getColumnIndex("album")).equals("WhatsApp Audio")) {
-//                        String string = query.getString(query.getColumnIndex("_data"));
-//                        String replaceAll = query.getString(query.getColumnIndex("title")).replace("_", " ").trim().replaceAll(" +", " ");
-//                        query.getString(query.getColumnIndex("artist"));
-//                        String string2 = query.getString(query.getColumnIndex("_id"));
-//                        String string3 = query.getString(query.getColumnIndex("_size"));
-//                        String string4 = query.getString(query.getColumnIndex("date_added"));
-//                        query.getLong(query.getColumnIndex("date_added"));
-//                        File_DTO file_DTO = new File_DTO();
-//                        file_DTO.setTitle(replaceAll);
-//                        file_DTO.setPath(string);
-//                        file_DTO.setDate(string4);
-//                        file_DTO.setId(string2);
-//                        file_DTO.setSize(new Ultil(this.context).bytesToHuman(Long.parseLong(string3) * 1000));
-//                        file_dtos.add(file_DTO);
-//                    }
-//                } while (query.moveToNext());
-//                query.close();
-//            }
-//            query.close();
-//        }
-//    }
     @SuppressLint("Range")
     private ArrayList<File_DTO> getAllShownImagesPath() {
         ArrayList<File_DTO> arrayList = new ArrayList<>();
@@ -100,6 +70,8 @@ public class Image_Ultil {
         }
         return arrayList;
     }
+
+
     private ArrayList<File_DTO> getImageButket(Context context) {
         ArrayList<File_DTO> fileDTOList = new ArrayList<>();
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
@@ -125,11 +97,9 @@ public class Image_Ultil {
             Log.e("TAG", "Exception is:  "+e);
             e.printStackTrace();
         }
-
         if (fileDTOList.isEmpty()) {
             Log.e("TAG", "fileDTOList is empty");
         }
-
         return fileDTOList;
     }
 
@@ -155,168 +125,20 @@ public class Image_Ultil {
         newFileDTO.setPath(filePath);
         return newFileDTO;
     }
-
-
-//    private ArrayList getImageButket(Context var1) {
-//        ArrayList var7 = new ArrayList();
-//        Uri var9 = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-//        String[] var8 = new String[]{"bucket_display_name", "_data", "date_modified"};
-//        Cursor var11 = var1.getContentResolver().query(var9, var8, (String)null, (String[])null, "date_added ASC");
-//        ArrayList var18 = new ArrayList();
-//        SimpleDateFormat var10 = new SimpleDateFormat("dd/MM/yyyy | HH:mm:ss");
-//        if (var11 != null) {
-//            while(true) {
-//                if (!var11.moveToNext()) {
-//                    var11.close();
-//                    break;
-//                }
-//                int var2 = 0;
-//                String var17;
-//                label45: {
-//                    label44: {
-//                        boolean var4;
-//                        try {
-//                            StringBuilder var16 = new StringBuilder();
-//                            var16.append("");
-//                            var16.append(var11.getString((int)var11.getColumnIndex(var8[0])));
-//                            var17 = var16.toString();
-//                            var4 = var17.equals(null);
-//                        } catch (Exception var15) {
-//                            break label44;
-//                        }
-//
-//                        if (!var4) {
-//                            break label45;
-//                        }
-//                    }
-//
-//                    var17 = "Unknown";
-//                }
-//
-//                String var12 = var11.getString((int)var11.getColumnIndex(var8[1]));
-//                long var5 = var11.getLong((int)var11.getColumnIndex(var8[2])) * 1000L;
-//                String var13 = (new File(var12)).getName();
-//                StringBuilder var14 = new StringBuilder();
-//                var14.append("/");
-//                var14.append(var13);
-//                String var20 = var12.replace(var14.toString(), "");
-//                if ((new File(var12)).exists()) {
-//                    File_DTO var19;
-//                    if (var18.contains(var17)) {
-//                        while(var2 < var7.size()) {
-//                            if (((File_DTO)var7.get(var2)).getAbumname() != null && ((File_DTO)var7.get(var2)).getAbumname().equals(var17)) {
-//                                int var3 = ((File_DTO)var7.get(var2)).getTotalitem();
-//                                var7.remove(var2);
-//                                var19 = new File_DTO();
-//                                var19.setAbumname(var17);
-//                                var19.setTotalitem(var3 + 1);
-//                                var19.setPath(var12);
-//                                var19.setRealpath(var20);
-//                                var19.setDate(var10.format(var5));
-//                                var7.add(var19);
-//                                break;
-//                            }
-//
-//                            ++var2;
-//                        }
-//                    } else {
-//                        var19 = new File_DTO();
-//                        var19.setAbumname(var17);
-//                        var19.setTotalitem(1);
-//                        var19.setDate(String.valueOf(var5));
-//                        var19.setPath(var12);
-//                        var7.add(var19);
-//                        var18.add(var17);
-//                    }
-//                }
-//            }
-//        }
-//        if (var7.isEmpty()) {
-//            Log.d("TAG", "savedInstanceState is null");
-//        }
-//        return var7;
-//    }
-
-
-//    @SuppressLint("Range")
-//    private ArrayList<File_DTO> getImageButket(Context context) {
-//        int i = 0;
-//        String str;
-//        ArrayList<File_DTO> arrayList = new ArrayList<>();
-//        String[] strArr = {"bucket_display_name", "_data", "date_modified"};
-//        Cursor query = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, strArr, null, null, "date_added ASC");
-//        ArrayList arrayList2 = new ArrayList();
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy | HH:mm:ss");
-//        if (query != null) {
-//            while (query.moveToNext()) {
-//                i = 0;
-//                try {
-//                    str = "" + query.getString(query.getColumnIndex(strArr[0]));
-//                } catch (Exception unused) {
-//                }
-//            }
-//            query.close();
-//        }
-//        if (arrayList.isEmpty()) {
-//            Log.d("TAG", "savedInstanceState is null");
-//        }
-////        return arrayList;
-//        str = "Unknown";
-//        String string = query.getString(query.getColumnIndex(strArr[1]));
-//        long j = query.getLong(query.getColumnIndex(strArr[2])) * 1000;
-//        String replace = string.replace("/" + new File(string).getName(), "");
-//        if (new File(string).exists()) {
-//            if (arrayList2.contains(str)) {
-//                while (true) {
-//                    if (i < arrayList.size()) {
-//                        if (arrayList.get(i).getAbumname() != null && arrayList.get(i).getAbumname().equals(str)) {
-//                            int totalitem = arrayList.get(i).getTotalitem();
-//                            arrayList.remove(i);
-//                            File_DTO file_DTO = new File_DTO();
-//                            file_DTO.setAbumname(str);
-//                            file_DTO.setTotalitem(totalitem + 1);
-//                            file_DTO.setPath(string);
-//                            file_DTO.setRealpath(replace);
-//                            file_DTO.setDate(simpleDateFormat.format(Long.valueOf(j)));
-//                            arrayList.add(file_DTO);
-//                            break;
-//                        }
-//                        i++;
-//                    } else {
-//                        break;
-//                    }
-//                }
-//            } else {
-//                File_DTO file_DTO2 = new File_DTO();
-//                file_DTO2.setAbumname(str);
-//                file_DTO2.setTotalitem(1);
-//                file_DTO2.setDate(String.valueOf(j));
-//                file_DTO2.setPath(string);
-//                arrayList.add(file_DTO2);
-//                arrayList2.add(str);
-//            }
-//        }
-//        return arrayList;
-//    }
-
     public ArrayList<File_DTO> allImage() {
-        ArrayList<File_DTO> allShownImagesPath = getAllShownImagesPath();
-        image_list = allShownImagesPath;
-        return allShownImagesPath;
+        image_list = getAllShownImagesPath();
+        return image_list;
     }
 
     public ArrayList<File_DTO> updatedata() {
         image_list = new ArrayList<>();
-        ArrayList<File_DTO> allShownImagesPath = getAllShownImagesPath();
-        image_list = allShownImagesPath;
-        return allShownImagesPath;
+        image_list = getAllShownImagesPath();
+        return image_list;
     }
 
     public ArrayList<File_DTO> updatealbumimage() {
-        Album_iimage = new ArrayList<>();
-        ArrayList<File_DTO> imageButket = getImageButket(this.context);
-        Album_iimage = imageButket;
-        return imageButket;
+        Album_iimage = getImageButket(this.context);
+        return Album_iimage;
     }
 
     public ArrayList<File_DTO> getallalbumImage() {
@@ -372,8 +194,11 @@ public class Image_Ultil {
             openInputStream.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            Log.e("MTAG", "Image_Ultil.class,copyFile():" + e);
         } catch (IOException e2) {
             e2.printStackTrace();
+            Log.e("MTAG", "Image_Ultil.class,copyFile():" +e2);
+
         }
     }
 }

@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.util.TypedValue;
 import android.webkit.MimeTypeMap;
@@ -367,39 +368,76 @@ public class FileUltils {
         logDir(file);
         return file;
     }
+    public static File generateFileName(String name, File directory) {
+        if (name == null) {
+            return null;
+        }
 
-    public static File generateFileName(String str, File file) {
-        String str2;
-        if (str == null) {
-            return null;
-        }
-        File file2 = new File(file, str);
-        if (file2.exists()) {
-            int lastIndexOf = str.lastIndexOf(46);
-            int i = 0;
-            if (lastIndexOf > 0) {
-                String substring = str.substring(0, lastIndexOf);
-                str2 = str.substring(lastIndexOf);
-                str = substring;
-            } else {
-                str2 = "";
+        File file = new File(directory, name);
+
+        if (file.exists()) {
+            String fileName = name;
+            String extension = "";
+            int dotIndex = name.lastIndexOf('.');
+            if (dotIndex > 0) {
+                fileName = name.substring(0, dotIndex);
+                extension = name.substring(dotIndex);
             }
-            while (file2.exists()) {
-                i++;
-                file2 = new File(file, str + '(' + i + ')' + str2);
+
+            int index = 0;
+
+            while (file.exists()) {
+                index++;
+                name = fileName + '(' + index + ')' + extension;
+                file = new File(directory, name);
             }
         }
+
         try {
-            if (file2.createNewFile()) {
-                logDir(file);
-                return file2;
+            if (!file.createNewFile()) {
+                return null;
             }
-            return null;
         } catch (IOException e) {
             Log.w(TAG, e);
             return null;
         }
+
+        logDir(directory);
+
+        return file;
     }
+//    public static File generateFileName(String str, File file) {
+//        String str2;
+//        if (str == null) {
+//            return null;
+//        }
+//        File file2 = new File(file, str);
+//        if (file2.exists()) {
+//            int lastIndexOf = str.lastIndexOf(46);
+//            int i = 0;
+//            if (lastIndexOf > 0) {
+//                String substring = str.substring(0, lastIndexOf);
+//                str2 = str.substring(lastIndexOf);
+//                str = substring;
+//            } else {
+//                str2 = "";
+//            }
+//            while (file2.exists()) {
+//                i++;
+//                file2 = new File(file, str + '(' + i + ')' + str2);
+//            }
+//        }
+//        try {
+//            if (file2.createNewFile()) {
+//                logDir(file);
+//                return file2;
+//            }
+//            return null;
+//        } catch (IOException e) {
+//            Log.w(TAG, e);
+//            return null;
+//        }
+//    }
 
     private static void saveFileFromUri(Context context, Uri uri, String destinationPath) {
         InputStream is = null;
@@ -556,25 +594,31 @@ public class FileUltils {
     public static File createTempImageFile(Context context, String str) throws IOException {
         return File.createTempFile(str, ".jpg", new File(context.getCacheDir(), DOCUMENTS_DIR));
     }
-
     public static String getFileName(Context context, Uri uri) {
-        if (context.getContentResolver().getType(uri) == null && context != null) {
+        String mimeType = context.getContentResolver().getType(uri);
+        String filename = null;
+        if (mimeType == null && context != null) {
             String path = getPath(context, uri);
             if (path == null) {
-                return getName(uri.toString());
+                filename = getName(uri.toString());
+            } else {
+                File file = new File(path);
+                filename = file.getName();
             }
-            return new File(path).getName();
+        } else {
+            Cursor returnCursor = context.getContentResolver().query(uri, null,
+                    null, null, null);
+            if (returnCursor != null) {
+                int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                returnCursor.moveToFirst();
+                filename = returnCursor.getString(nameIndex);
+                returnCursor.close();
+            }
         }
-        Cursor query = context.getContentResolver().query(uri, null, null, null, null);
-        if (query != null) {
-            int columnIndex = query.getColumnIndex("_display_name");
-            query.moveToFirst();
-            String string = query.getString(columnIndex);
-            query.close();
-            return string;
-        }
-        return null;
+
+        return filename;
     }
+
 
     public static String getName(String str) {
         if (str == null) {

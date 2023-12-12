@@ -43,14 +43,12 @@ import androidx.activity.result.IntentSenderRequest;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.core.internal.view.SupportMenu;
 import androidx.core.os.EnvironmentCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.chad.library.adapter.base.animation.AlphaInAnimation;
 import com.chad.library.adapter.base.animation.ScaleInAnimation;
 import com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CustomDeleteDialog;
@@ -101,7 +99,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 public class ResulfActivity extends AppCompatActivity implements MusicAdapter.OnClick, ImageAlbumAdapter.OnClickImageAlbum, VideoAlbumAdapter.OnClickImageAlbum, Favourite_Adapter.OnClickItem, ImageAdapter.OnClickImageAlbum, Recent_Adapter.OnClickItem, DowloadApdapter.OnLongclick {
@@ -218,7 +215,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         this.imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResulfActivity.this.Eventback();
+                Eventback();
             }
         });
         this.launcher = registerForActivityResult(new ActivityResultContracts.StartIntentSenderForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -232,9 +229,9 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         final HandleLooper handleLooper = new HandleLooper() {
             @Override
             public void update() {
-                ResulfActivity.this.musicAdapter.setList(ResulfActivity.this.data_manager.readAllAppssss(ResulfActivity.this));
-                ResulfActivity.this.musicAdapter.setDrawables(ResulfActivity.this.data_manager.drawables());
-                ResulfActivity.this.musicAdapter.notifyDataSetChanged();
+                musicAdapter.setList(data_manager.readAllAppssss(ResulfActivity.this));
+                musicAdapter.setDrawables(data_manager.drawables());
+                musicAdapter.notifyDataSetChanged();
             }
         };
         this.activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -249,230 +246,103 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         });
         Contructer();
         data();
-        Bundle extras = getIntent().getExtras();
-        Objects.requireNonNull(extras);
-        this.name_key = extras.getString("nameitem");
+        this.name_key = getIntent().getExtras().getString("nameitem");
         final updatelist updatelistVar = new updatelist() {
             @Override
             public void update(int i) {
-                ResulfActivity.this.checkEmpty(i);
+                checkEmpty(i);
             }
         };
-        String str = this.name_key;
-        str.hashCode();
-        char c = 65535;
-        switch (str.hashCode()) {
-            case -1852902175:
-                if (str.equals("SDcard")) {
-                    c = 0;
-                    break;
-                }
-                break;
-            case -1185250696:
-                if (str.equals("images")) {
-                    c = 1;
-                    break;
-                }
-                break;
-            case -934918565:
-                if (str.equals("recent")) {
-                    c = 2;
-                    break;
-                }
-                break;
-            case -877567715:
-                if (str.equals("imagehide")) {
-                    c = 3;
-                    break;
-                }
-                break;
-            case 96796:
-                if (str.equals("apk")) {
-                    c = 4;
-                    break;
-                }
-                break;
-            case 96801:
-                if (str.equals("app")) {
-                    c = 5;
-                    break;
-                }
-                break;
-            case 99640:
-                if (str.equals("doc")) {
-                    c = 6;
-                    break;
-                }
-                break;
-            case 101147:
-                if (str.equals("fav")) {
-                    c = 7;
-                    break;
-                }
-                break;
-            case 110834:
-                if (str.equals("pdf")) {
-                    c = '\b';
-                    break;
-                }
-                break;
-            case 111220:
-                if (str.equals("ppt")) {
-                    c = '\t';
-                    break;
-                }
-                break;
-            case 115312:
-                if (str.equals("txt")) {
-                    c = '\n';
-                    break;
-                }
-                break;
-            case 118783:
-                if (str.equals("xls")) {
-                    c = 11;
-                    break;
-                }
-                break;
-            case 120609:
-                if (str.equals("zip")) {
-                    c = '\f';
-                    break;
-                }
-                break;
-            case 104263205:
-                if (str.equals("music")) {
-                    c = '\r';
-                    break;
-                }
-                break;
-            case 112202875:
-                if (str.equals("video")) {
-                    c = 14;
-                    break;
-                }
-                break;
-            case 1082880659:
-                if (str.equals("recycle")) {
-                    c = 15;
-                    break;
-                }
-                break;
-            case 1333541949:
-                if (str.equals("videohide")) {
-                    c = 16;
-                    break;
-                }
-                break;
-            case 1845743388:
-                if (str.equals("newfile")) {
-                    c = 17;
-                    break;
-                }
-                break;
-            case 1847116850:
-                if (str.equals("dowload")) {
-                    c = 18;
-                    break;
-                }
-                break;
-            case 2046112150:
-                if (str.equals("Instorage")) {
-                    c = 19;
-                    break;
-                }
-                break;
-        }
-        switch (c) {
-            case 0:
+        switch (name_key) {
+            case "SDcard":
                 this.img_menu.setVisibility(View.VISIBLE);
                 this.textView_title.setText(getString(R.string.sd_card));
                 switchToSD();
                 break;
-            case 1:
+            case "images":
                 this.textView_title.setText(getString(R.string.images));
                 this.txt_checklist.setText("No  Albums found!");
                 this.img_checklist.setImageResource(R.drawable.icon_imgcheck);
                 ImageAlbum();
                 break;
-            case 2:
+            case "recent":
                 this.textView_title.setText("Recent");
                 this.txt_checklist.setText("No files found!");
                 recentfile();
                 break;
-            case 3:
+            case "imagehide":
                 this.textView_title.setText("Images Hide");
                 this.txt_checklist.setText("No images found!");
                 hidefile();
                 break;
-            case 4:
+            case "apk":
                 this.textView_title.setText(R.string.apks);
                 this.txt_checklist.setText("No  apks found!");
                 this.img_checklist.setImageResource(R.drawable.apkcheck);
                 apkUltil();
                 break;
-            case 5:
+            case "app":
                 this.textView_title.setText(getString(R.string.Application));
                 this.txt_checklist.setText("No apps found!");
                 this.img_checklist.setImageResource(R.drawable.appcheck);
                 app();
                 break;
-            case 6:
+            case "doc":
                 this.textView_title.setText("DOC");
                 DocUi();
                 break;
-            case 7:
+            case "fav":
                 this.textView_title.setText("Favourite");
                 this.txt_checklist.setText("No favourite files found!");
                 this.img_checklist.setImageResource(R.drawable.favcheck);
                 Favourites();
                 break;
-            case '\b':
+            case "pdf":
                 this.textView_title.setText("PDF");
                 PdfUi();
                 break;
-            case '\t':
+            case "ppt":
                 this.textView_title.setText("PPT");
                 PptUi();
                 break;
-            case '\n':
+            case "txt":
                 this.textView_title.setText("TXT");
                 txtUi();
                 break;
-            case 11:
+            case "xls":
                 this.textView_title.setText("XLS");
                 XlstUi();
                 break;
-            case '\f':
+            case "zip":
                 this.textView_title.setText(R.string.zipped);
                 this.txt_checklist.setText("No  zips found!");
                 this.img_checklist.setImageResource(R.drawable.zipcheck);
                 zipUI();
                 break;
-            case '\r':
+            case "music":
                 this.textView_title.setText(R.string.audios);
                 this.txt_checklist.setText("No audios found!");
                 this.img_checklist.setImageResource(R.drawable.iconmusic_check);
                 MusicUi();
                 break;
-            case 14:
+            case "video":
                 this.textView_title.setText(getString(R.string.video));
                 this.txt_checklist.setText("No  Albums found!");
                 this.img_checklist.setImageResource(R.drawable.icon_videocheck);
                 VideoAlbum();
                 break;
-            case 15:
+            case "recycle":
                 this.textView_title.setText(R.string.recycle);
                 this.txt_checklist.setText("No files found!");
                 this.img_checklist.setImageResource(R.drawable.recyclecheck);
                 Recycledta();
                 break;
-            case 16:
+            case "videohide":
                 this.textView_title.setText("Videos Hide");
                 this.txt_checklist.setText("No videos found!");
                 hidefile();
                 break;
-            case 17:
+            case "newfile":
                 this.textView_title.setText("New File");
                 this.txt_checklist.setText("No files found!");
                 try {
@@ -482,11 +352,11 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                     e.printStackTrace();
                     break;
                 }
-            case 18:
+            case "dowload":
                 this.textView_title.setText(getString(R.string.dowdnloads));
                 dowlaod();
                 break;
-            case 19:
+            case "Instorage":
                 this.img_menu.setVisibility(View.VISIBLE);
                 this.textView_title.setText(getString(R.string.instorage));
                 switchToInternal();
@@ -496,70 +366,70 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         Callbackupdate.getInstance().setstateListenuodatecout(new Callbackupdate.Updatecount() {
             @Override
             public void updatecount() {
-                ResulfActivity.this.updateAlbumImage();
+                updateAlbumImage();
             }
         });
         CallbackUpdateHideFile.getInstance().setStateListen(new CallbackUpdateHideFile.OncustomStateListen() {
             @Override
             public void statechange() {
-                ResulfActivity.this.hidefile();
+                hidefile();
             }
         });
         CallbackUpdatehide.getInstance().setStateListen(new CallbackUpdatehide.OncustomStateListen() {
             @Override
             public void statechange() {
                 if (ResulfActivity.this.name_key.equals("imagehide")) {
-                    ResulfActivity.this.imageAdapter.setList(ResulfActivity.this.imagehide());
+                    imageAdapter.setList(imagehide());
                 } else if (ResulfActivity.this.name_key.equals("videohide")) {
-                    ResulfActivity.this.imageAdapter.setList(ResulfActivity.this.videohide());
+                    imageAdapter.setList(videohide());
                 }
-                ResulfActivity.this.recyclerView.setAdapter(ResulfActivity.this.imageAdapter);
-                ResulfActivity.this.imageAdapter.notifyDataSetChanged();
+                recyclerView.setAdapter(imageAdapter);
+                imageAdapter.notifyDataSetChanged();
             }
         });
         CallbackUpdateFavourite.getInstance().setStateListen(new CallbackUpdateFavourite.OncustomStateListen() {
             @Override
             public void statechange() {
                 if (ResulfActivity.this.name_key.equals("fav")) {
-                    ResulfActivity.this.Favourites();
+                    Favourites();
                 }
             }
         });
         CallbackUpdateMultilDelete.getInstance().setStateListen(new CallbackUpdateMultilDelete.OncustomStateListen() {
             @Override
             public void statechange() {
-                if (ResulfActivity.this.imageAlbumAdapter != null) {
-                    ResulfActivity.this.imageAlbumAdapter.setList(ResulfActivity.this.image_ultil.updatealbumimage());
-                    ResulfActivity.this.imageAlbumAdapter.notifyDataSetChanged();
+                if (imageAlbumAdapter != null) {
+                    imageAlbumAdapter.setList(image_ultil.updatealbumimage());
+                    imageAlbumAdapter.notifyDataSetChanged();
                     return;
                 }
-                ResulfActivity.this.videoAlbumAdapter.setList(ResulfActivity.this.video_ultil.updateAllVidepAlbum());
-                ResulfActivity.this.videoAlbumAdapter.notifyDataSetChanged();
+                videoAlbumAdapter.setList(video_ultil.updateAllVidepAlbum());
+                videoAlbumAdapter.notifyDataSetChanged();
             }
         });
         CallbackFav.getInstance().setListener(new CallbackFav.OnCustomStateListener() {
             @Override
             public void stateChanged() {
-                ResulfActivity.this.file_document = new ArrayList();
-                ResulfActivity.this.file_document = CallbackFav.getInstance().getState();
-                if (ResulfActivity.this.favourite_adapter != null) {
-                    ResulfActivity.this.favourite_adapter.setList(ResulfActivity.this.file_document);
-                    ResulfActivity.this.favourite_adapter.notifyDataSetChanged();
-                } else if (ResulfActivity.this.dowloadApdapter != null) {
-                    ResulfActivity.this.dowloadApdapter.setList(ResulfActivity.this.file_document);
-                    ResulfActivity.this.dowloadApdapter.notifyDataSetChanged();
-                } else if (ResulfActivity.this.recent_adapter != null) {
-                    ResulfActivity.this.recent_adapter.setList(ResulfActivity.this.file_document);
-                    ResulfActivity.this.recent_adapter.notifyDataSetChanged();
+                file_document = new ArrayList();
+                file_document = CallbackFav.getInstance().getState();
+                if (favourite_adapter != null) {
+                    favourite_adapter.setList(file_document);
+                    favourite_adapter.notifyDataSetChanged();
+                } else if (dowloadApdapter != null) {
+                    dowloadApdapter.setList(file_document);
+                    dowloadApdapter.notifyDataSetChanged();
+                } else if (recent_adapter != null) {
+                    recent_adapter.setList(file_document);
+                    recent_adapter.notifyDataSetChanged();
                 }
             }
         });
         CallbackNewFile.getInstance().setListener(new CallbackNewFile.OnCustomStateListener() {
             @Override
             public void stateChanged() {
-                ResulfActivity.this.baseApdapterNewfile.setdata();
-                ResulfActivity.this.baseApdapterNewfile.setSave_list(ResulfActivity.this.baseApdapterNewfile.getArrAll());
-                ResulfActivity.this.baseApdapterNewfile.notifyDataSetChanged();
+                baseApdapterNewfile.setdata();
+                baseApdapterNewfile.setSave_list(baseApdapterNewfile.getArrAll());
+                baseApdapterNewfile.notifyDataSetChanged();
             }
         });
         CallbackUpdateRecent.getInstance().setStateListen(new CallbackUpdateRecent.OncustomStateListen() {
@@ -660,82 +530,82 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                         }
                         switch (c2) {
                             case 0:
-                                new Ultil(ResulfActivity.this).restoreMultil(ResulfActivity.this.imageAdapter.getListchosed());
-                                ResulfActivity.this.deletefile(ResulfActivity.this.imageAdapter.getListchosed());
-                                ResulfActivity.this.imageAdapter.setList(ResulfActivity.this.imagehide());
-                                ResulfActivity.this.imageAdapter.setIscheck(false);
-                                ResulfActivity.this.imageAdapter.cleanfilechose();
-                                ResulfActivity.this.updateview(false);
+                                new Ultil(ResulfActivity.this).restoreMultil(imageAdapter.getListchosed());
+                                deletefile(imageAdapter.getListchosed());
+                                imageAdapter.setList(imagehide());
+                                imageAdapter.setIscheck(false);
+                                imageAdapter.cleanfilechose();
+                                updateview(false);
                                 Toast.makeText(ResulfActivity.this, "Restored", Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfileApkdowload();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfileApkdowload();
+                                callbackdelete(file_document);
                                 break;
                             case 2:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfidocx();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfidocx();
+                                callbackdelete(file_document);
                                 break;
                             case 3:
-                                ResulfActivity.this.favourite_adapter.deleteMultil(ResulfActivity.this.favourite_adapter.getlistchose());
+                                favourite_adapter.deleteMultil(favourite_adapter.getlistchose());
                                 Toast.makeText(ResulfActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                                 break;
                             case 4:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfilepdf();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfilepdf();
+                                callbackdelete(file_document);
                                 break;
                             case 5:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfileppt();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfileppt();
+                                callbackdelete(file_document);
                                 break;
                             case 6:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfiletxt();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfiletxt();
+                                callbackdelete(file_document);
                                 break;
                             case 7:
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getfilexls();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getfilexls();
+                                callbackdelete(file_document);
                                 break;
                             case '\b':
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.getzipwithMediastore();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = data_manager.getzipwithMediastore();
+                                callbackdelete(file_document);
                                 break;
                             case '\t':
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.musicAdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.musicUltil.updateData();
-                                ResulfActivity.this.callbackdelete(ResulfActivity.this.file_document);
+                                deleCallBack(musicAdapter.getlistchose());
+                                file_document = musicUltil.updateData();
+                                callbackdelete(file_document);
                                 break;
                             case '\n':
-                                ResulfActivity.this.deletefile(ResulfActivity.this.favourite_adapter.getlistchose());
-                                ResulfActivity.this.favourite_adapter.setList(new Ultil(ResulfActivity.this).setRecylerView());
-                                ResulfActivity.this.favourite_adapter.setCheckview(false);
-                                ResulfActivity.this.favourite_adapter.clearlistchose();
-                                ResulfActivity.this.updateview(false);
+                                deletefile(favourite_adapter.getlistchose());
+                                favourite_adapter.setList(new Ultil(ResulfActivity.this).setRecylerView());
+                                favourite_adapter.setCheckview(false);
+                                favourite_adapter.clearlistchose();
+                                updateview(false);
                                 Toast.makeText(ResulfActivity.this, "Deleted from device", Toast.LENGTH_SHORT).show();
                                 break;
                             case 11:
-                                new Ultil(ResulfActivity.this).restoreMultil(ResulfActivity.this.imageAdapter.getListchosed());
-                                ResulfActivity.this.deletefile(ResulfActivity.this.imageAdapter.getListchosed());
-                                ResulfActivity.this.imageAdapter.setList(ResulfActivity.this.videohide());
-                                ResulfActivity.this.imageAdapter.setIscheck(false);
-                                ResulfActivity.this.imageAdapter.cleanfilechose();
-                                ResulfActivity.this.updateview(false);
+                                new Ultil(ResulfActivity.this).restoreMultil(imageAdapter.getListchosed());
+                                deletefile(imageAdapter.getListchosed());
+                                imageAdapter.setList(videohide());
+                                imageAdapter.setIscheck(false);
+                                imageAdapter.cleanfilechose();
+                                updateview(false);
                                 Toast.makeText(ResulfActivity.this, "Restored", Toast.LENGTH_SHORT).show();
                                 break;
                             case '\f':
-                                ResulfActivity.this.deleCallBack(ResulfActivity.this.dowloadApdapter.getlistchose());
-                                ResulfActivity.this.file_document = ResulfActivity.this.data_manager.filesDowload();
-                                ResulfActivity.this.dowloadApdapter.setList(ResulfActivity.this.file_document);
-                                ResulfActivity.this.dowloadApdapter.setIscheck(false);
-                                ResulfActivity.this.dowloadApdapter.clearListchose();
-                                ResulfActivity.this.updateview(false);
+                                deleCallBack(dowloadApdapter.getlistchose());
+                                file_document = data_manager.filesDowload();
+                                dowloadApdapter.setList(file_document);
+                                dowloadApdapter.setIscheck(false);
+                                dowloadApdapter.clearListchose();
+                                updateview(false);
                                 break;
                         }
                         try {
@@ -746,50 +616,50 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                         dialog_thread.dissmiss();
                     }
                 }.obtainMessage(111, "parameter").sendToTarget();
-                ResulfActivity.this.check = false;
+                check = false;
             }
         };
         Callbackupdatealbum.getInstance().setStateListen(new Callbackupdatealbum.OncustomStateListen() {
             @Override
             public void statechange() {
                 if (ResulfActivity.this.name_key.equals("images")) {
-                    ResulfActivity.this.image_ultil.updatealbumimage();
-                    ResulfActivity.this.imageAlbumAdapter.setList(ResulfActivity.this.image_ultil.updatealbumimage());
+                    image_ultil.updatealbumimage();
+                    imageAlbumAdapter.setList(image_ultil.updatealbumimage());
                 } else {
-                    ResulfActivity.this.video_ultil.updateAllVidepAlbum();
-                    ResulfActivity.this.imageAlbumAdapter.setList(ResulfActivity.this.video_ultil.updateAllVidepAlbum());
+                    video_ultil.updateAllVidepAlbum();
+                    imageAlbumAdapter.setList(video_ultil.updateAllVidepAlbum());
                 }
-                ResulfActivity.this.imageAlbumAdapter.notifyDataSetChanged();
+                imageAlbumAdapter.notifyDataSetChanged();
             }
         });
         CallbackUpdateInternal.getInstance().setStateListen(new CallbackUpdateInternal.OncustomStateListen() {
             @Override
             public void statechange() {
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.clearSelection();
+                    myRecyclerAdapter.clearSelection();
                 } else {
-                    ResulfActivity.this.adapter.clearSelection();
+                    adapter.clearSelection();
                 }
                 ResulfActivity.isPasteMode = false;
                 ResulfActivity.isSelection = false;
                 if (ResulfActivity.collections) {
                     if (ResulfActivity.whichCollection == 1) {
-                        ResulfActivity.this.data_manager.setImagesData();
+                        data_manager.setImagesData();
                     }
                     if (ResulfActivity.whichCollection == 2) {
-                        ResulfActivity.this.data_manager.setAudio(ResulfActivity.this);
+                        data_manager.setAudio(ResulfActivity.this);
                     }
                     if (ResulfActivity.whichCollection == 3) {
-                        ResulfActivity.this.data_manager.setDocs();
+                        data_manager.setDocs();
                     }
                 }
                 if (!ResulfActivity.collections && !ResulfActivity.favourites) {
-                    ResulfActivity.this.data_manager.setRecycler(ResulfActivity.getCurrentPath(), new Sharepre_Ulti(ResulfActivity.this).readSharedPrefsInt("Chosed", 1));
+                    data_manager.setRecycler(ResulfActivity.getCurrentPath(), new Sharepre_Ulti(ResulfActivity.this).readSharedPrefsInt("Chosed", 1));
                 }
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                    myRecyclerAdapter.notifyDataSetChanged();
                 } else {
-                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
@@ -836,7 +706,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                 }
                 switch (c2) {
                     case 0:
-                        if (ResulfActivity.this.imageAdapter.getListchosed().size() > 1) {
+                        if (imageAdapter.getListchosed().size() > 1) {
                             customDeleteDialog.restore_imgs();
                             return;
                         } else {
@@ -844,7 +714,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                             return;
                         }
                     case 1:
-                        if (ResulfActivity.this.musicAdapter.getlistchose().size() > 1) {
+                        if (musicAdapter.getlistchose().size() > 1) {
                             customDeleteDialog.set_titile_multil_audio();
                             return;
                         } else {
@@ -852,7 +722,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                             return;
                         }
                     case 2:
-                        if (ResulfActivity.this.favourite_adapter.getlistchose().size() > 1) {
+                        if (favourite_adapter.getlistchose().size() > 1) {
                             customDeleteDialog.delete_permanerly();
                             return;
                         } else {
@@ -860,7 +730,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                             return;
                         }
                     case 3:
-                        if (ResulfActivity.this.imageAdapter.getListchosed().size() > 1) {
+                        if (imageAdapter.getListchosed().size() > 1) {
                             customDeleteDialog.set_tiltile_restore_mulvideo();
                             return;
                         } else {
@@ -877,7 +747,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             @Override
             public void onClick(View view) {
                 char c2;
-                ResulfActivity.this.fileshare = new ArrayList();
+                fileshare = new ArrayList();
                 String str2 = ResulfActivity.this.name_key;
                 switch (str2.hashCode()) {
                     case -877567715:
@@ -1001,15 +871,15 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                         break;
                     case '\n':
                     case 11:
-                        ResulfActivity.this.imageAdapter.shareVideoHide(ResulfActivity.this.imageAdapter.getListchosed());
+                        imageAdapter.shareVideoHide(imageAdapter.getListchosed());
                         break;
                     case '\f':
                         ResulfActivity resulfActivity3 = ResulfActivity.this;
                         resulfActivity3.fileshare = resulfActivity3.dowloadApdapter.getlistchose();
                         break;
                 }
-                if (ResulfActivity.this.fileshare.size() > 0) {
-                    new Ultil(ResulfActivity.this).shareMultil_file(ResulfActivity.this.fileshare);
+                if (fileshare.size() > 0) {
+                    new Ultil(ResulfActivity.this).shareMultil_file(fileshare);
                     return;
                 }
                 ResulfActivity resulfActivity4 = ResulfActivity.this;
@@ -1031,27 +901,27 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                         switch (menuItem.getItemId()) {
                             case R.id.mode_girdview:
                                 if (ResulfActivity.gridView) {
-                                    ResulfActivity.this.recyclerView.setLayoutManager(new LinearLayoutManager(ResulfActivity.this, RecyclerView.VERTICAL, false));
-                                    ResulfActivity.this.myRecyclerAdapter = new MyRecyclerAdapter(ResulfActivity.this.data_manager, ResulfActivity.this);
-                                    ResulfActivity.this.recyclerView.setAdapter(ResulfActivity.this.myRecyclerAdapter);
-                                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(ResulfActivity.this, RecyclerView.VERTICAL, false));
+                                    myRecyclerAdapter = new MyRecyclerAdapter(data_manager, ResulfActivity.this);
+                                    recyclerView.setAdapter(myRecyclerAdapter);
+                                    myRecyclerAdapter.notifyDataSetChanged();
                                     ResulfActivity.gridView = false;
                                     break;
                                 } else {
-                                    ResulfActivity.this.recyclerView.setLayoutManager(new GridLayoutManager((Context) ResulfActivity.this, 4, RecyclerView.VERTICAL, false));
-                                    ResulfActivity.this.recyclerView.setAdapter(ResulfActivity.this.adapter);
-                                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                                    recyclerView.setLayoutManager(new GridLayoutManager((Context) ResulfActivity.this, 4, RecyclerView.VERTICAL, false));
+                                    recyclerView.setAdapter(adapter);
+                                    adapter.notifyDataSetChanged();
                                     ResulfActivity.gridView = true;
                                     break;
                                 }
                             case R.id.new_folder:
-                                ResulfActivity.this.createfolder();
+                                createfolder();
                                 break;
                             case R.id.sort:
-                                ResulfActivity.this.ChoseSort();
+                                ChoseSort();
                                 break;
                             case R.id.statistic:
-                                ResulfActivity.this.startActivity(new Intent(ResulfActivity.this, StatisticActivity.class));
+                                startActivity(new Intent(ResulfActivity.this, StatisticActivity.class));
                                 break;
                         }
                         return true;
@@ -1118,61 +988,56 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 if (ResulfActivity.this.name_key.equals("Instorage") || ResulfActivity.this.name_key.equals("SDcard")) {
                     try {
-                        ResulfActivity.this.search.cancel(true);
+                        search.cancel(true);
                     } catch (Exception unused) {
                     }
-                    ResulfActivity.this.search = new BackGroundSearch(ResulfActivity.this.data_manager, ResulfActivity.this.adapter, ResulfActivity.this.myRecyclerAdapter);
-                    ResulfActivity.this.search.setUpdatelist(updatelistVar);
-                    ResulfActivity.this.search.execute(ResulfActivity.path.getPath(), ResulfActivity.this.editText_search.getText().toString().toLowerCase().trim());
+                    search = new BackGroundSearch(data_manager, adapter, myRecyclerAdapter);
+                    search.setUpdatelist(updatelistVar);
+                    search.execute(ResulfActivity.path.getPath(), editText_search.getText().toString().toLowerCase().trim());
                 } else if (ResulfActivity.this.name_key.equals("images")) {
-                    ResulfActivity.this.imageAlbumAdapter.search(ResulfActivity.this.editText_search.getText().toString().trim());
+                    imageAlbumAdapter.search(editText_search.getText().toString().trim());
                     ResulfActivity resulfActivity = ResulfActivity.this;
                     resulfActivity.checkEmpty(resulfActivity.imageAlbumAdapter.getData().size());
                 } else if (ResulfActivity.this.name_key.equals("video")) {
-                    ResulfActivity.this.videoAlbumAdapter.search(charSequence.toString().trim());
+                    videoAlbumAdapter.search(charSequence.toString().trim());
                     ResulfActivity resulfActivity2 = ResulfActivity.this;
                     resulfActivity2.checkEmpty(resulfActivity2.videoAlbumAdapter.getData().size());
                 } else if (ResulfActivity.this.name_key.equals("dowload")) {
-                    ResulfActivity.this.dowloadApdapter.setUpdateSearch(updateSearch);
-                    ResulfActivity.this.dowloadApdapter.search(charSequence.toString());
+                    dowloadApdapter.setUpdateSearch(updateSearch);
+                    dowloadApdapter.search(charSequence.toString());
                 } else if (ResulfActivity.this.name_key.equals("recent")) {
-                    ResulfActivity.this.recent_adapter.setUpdateSearch(updateSearch);
-                    ResulfActivity.this.recent_adapter.search(charSequence.toString().trim());
+                    recent_adapter.setUpdateSearch(updateSearch);
+                    recent_adapter.search(charSequence.toString().trim());
                 } else if (ResulfActivity.this.name_key.equals("newfile")) {
-                    ResulfActivity.this.baseApdapterNewfile.search(charSequence.toString().trim());
+                    baseApdapterNewfile.search(charSequence.toString().trim());
                 } else if (ResulfActivity.this.name_key.equals("fav")) {
-                    ResulfActivity.this.favourite_adapter.search(charSequence.toString().trim());
+                    favourite_adapter.search(charSequence.toString().trim());
                     ResulfActivity resulfActivity3 = ResulfActivity.this;
                     resulfActivity3.checkEmpty(resulfActivity3.favourite_adapter.getData().size());
                 } else if (ResulfActivity.this.name_key.equals("recycle")) {
-                    ResulfActivity.this.favourite_adapter.searchRecycle(charSequence.toString().trim());
+                    favourite_adapter.searchRecycle(charSequence.toString().trim());
                     ResulfActivity resulfActivity4 = ResulfActivity.this;
                     resulfActivity4.checkEmpty(resulfActivity4.favourite_adapter.getData().size());
                 } else if (ResulfActivity.this.name_key.equals("imagehide") || ResulfActivity.this.name_key.equals("videohide")) {
-                    ResulfActivity.this.imageAdapter.search(charSequence.toString().trim());
-                    ResulfActivity.this.imageAdapter.setUpdateSearch(updateSearch);
+                    imageAdapter.search(charSequence.toString().trim());
+                    imageAdapter.setUpdateSearch(updateSearch);
                 } else {
-                    ResulfActivity.this.musicAdapter.setUpdateSearch(updateSearch);
-                    ResulfActivity.this.musicAdapter.search(charSequence.toString().toLowerCase().trim());
+                    musicAdapter.setUpdateSearch(updateSearch);
+                    musicAdapter.search(charSequence.toString().toLowerCase().trim());
                     ResulfActivity resulfActivity5 = ResulfActivity.this;
                     resulfActivity5.checkEmpty(resulfActivity5.musicAdapter.getData().size());
                 }
             }
         });
         this.linearLayout_select.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
-
             public void onClick(View view) {
-                ResulfActivity resulfActivity = ResulfActivity.this;
                 char c2 = 1;
-                resulfActivity.checkchose = !resulfActivity.checkchose;
-                String str2 = ResulfActivity.this.name_key;
-                str2.hashCode();
-                switch (str2.hashCode()) {
+                checkchose = !checkchose;
+                ResulfActivity.this.name_key.hashCode();
+                switch (ResulfActivity.this.name_key.hashCode()) {
                     case -877567715:
-                        if (str2.equals("imagehide")) {
+                        if (ResulfActivity.this.name_key.equals("imagehide")) {
                             c2 = 0;
                             break;
                         }
@@ -1181,77 +1046,77 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                     case 96796:
                         break;
                     case 99640:
-                        if (str2.equals("doc")) {
+                        if (ResulfActivity.this.name_key.equals("doc")) {
                             c2 = 2;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 101147:
-                        if (str2.equals("fav")) {
+                        if (ResulfActivity.this.name_key.equals("fav")) {
                             c2 = 3;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 110834:
-                        if (str2.equals("pdf")) {
+                        if (ResulfActivity.this.name_key.equals("pdf")) {
                             c2 = 4;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 111220:
-                        if (str2.equals("ppt")) {
+                        if (ResulfActivity.this.name_key.equals("ppt")) {
                             c2 = 5;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 115312:
-                        if (str2.equals("txt")) {
+                        if (ResulfActivity.this.name_key.equals("txt")) {
                             c2 = 6;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 118783:
-                        if (str2.equals("xls")) {
+                        if (ResulfActivity.this.name_key.equals("xls")) {
                             c2 = 7;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 120609:
-                        if (str2.equals("zip")) {
+                        if (ResulfActivity.this.name_key.equals("zip")) {
                             c2 = '\b';
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 104263205:
-                        if (str2.equals("music")) {
+                        if (ResulfActivity.this.name_key.equals("music")) {
                             c2 = '\t';
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 1082880659:
-                        if (str2.equals("recycle")) {
+                        if (ResulfActivity.this.name_key.equals("recycle")) {
                             c2 = '\n';
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 1333541949:
-                        if (str2.equals("videohide")) {
+                        if (ResulfActivity.this.name_key.equals("videohide")) {
                             c2 = 11;
                             break;
                         }
                         c2 = 65535;
                         break;
                     case 1847116850:
-                        if (str2.equals("dowload")) {
+                        if (ResulfActivity.this.name_key.equals("dowload")) {
                             c2 = '\f';
                             break;
                         }
@@ -1264,15 +1129,15 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                 switch (c2) {
                     case 0:
                     case 11:
-                        if (ResulfActivity.this.imageAdapter.posadd.size() == ResulfActivity.this.imageAdapter.getData().size()) {
-                            ResulfActivity.this.imageAdapter.cleanfilechose();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.esclip);
+                        if (imageAdapter.posadd.size() == imageAdapter.getData().size()) {
+                            imageAdapter.cleanfilechose();
+                            img_choseall.setImageResource(R.drawable.esclip);
                         } else {
-                            ResulfActivity.this.imageAdapter.choseall();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.blackcheck);
+                            imageAdapter.choseall();
+                            img_choseall.setImageResource(R.drawable.blackcheck);
                         }
-                        TextView textView = ResulfActivity.this.txt_count_file;
-                        textView.setText("Select all( " + ResulfActivity.this.imageAdapter.posadd.size() + " )");
+                        TextView textView = txt_count_file;
+                        textView.setText("Select all( " + imageAdapter.posadd.size() + " )");
                         return;
                     case 1:
                     case 2:
@@ -1282,39 +1147,39 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                     case 7:
                     case '\b':
                     case '\t':
-                        if (ResulfActivity.this.musicAdapter.getPosadd().size() == ResulfActivity.this.musicAdapter.getData().size()) {
-                            ResulfActivity.this.musicAdapter.setPosadd(new ArrayList<>());
-                            ResulfActivity.this.musicAdapter.notifyDataSetChanged();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.esclip);
+                        if (musicAdapter.getPosadd().size() == musicAdapter.getData().size()) {
+                            musicAdapter.setPosadd(new ArrayList<>());
+                            musicAdapter.notifyDataSetChanged();
+                            img_choseall.setImageResource(R.drawable.esclip);
                         } else {
-                            ResulfActivity.this.musicAdapter.choseall();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.blackcheck);
+                            musicAdapter.choseall();
+                            img_choseall.setImageResource(R.drawable.blackcheck);
                         }
-                        TextView textView2 = ResulfActivity.this.txt_count_file;
-                        textView2.setText("Select all( " + ResulfActivity.this.musicAdapter.getPosadd().size() + " )");
+                        TextView textView2 = txt_count_file;
+                        textView2.setText("Select all( " + musicAdapter.getPosadd().size() + " )");
                         return;
                     case 3:
                     case '\n':
-                        if (ResulfActivity.this.favourite_adapter.posadd.size() == ResulfActivity.this.favourite_adapter.getData().size()) {
-                            ResulfActivity.this.favourite_adapter.clearlistchose();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.esclip);
+                        if (favourite_adapter.posadd.size() == favourite_adapter.getData().size()) {
+                            favourite_adapter.clearlistchose();
+                            img_choseall.setImageResource(R.drawable.esclip);
                         } else {
-                            ResulfActivity.this.favourite_adapter.chosseall();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.blackcheck);
+                            favourite_adapter.chosseall();
+                            img_choseall.setImageResource(R.drawable.blackcheck);
                         }
-                        TextView textView3 = ResulfActivity.this.txt_count_file;
-                        textView3.setText("Select all( " + ResulfActivity.this.favourite_adapter.posadd.size() + " )");
+                        TextView textView3 = txt_count_file;
+                        textView3.setText("Select all( " + favourite_adapter.posadd.size() + " )");
                         return;
                     case '\f':
-                        if (ResulfActivity.this.dowloadApdapter.posadd.size() == ResulfActivity.this.dowloadApdapter.getData().size()) {
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.esclip);
-                            ResulfActivity.this.dowloadApdapter.clearListchose();
+                        if (dowloadApdapter.posadd.size() == dowloadApdapter.getData().size()) {
+                            img_choseall.setImageResource(R.drawable.esclip);
+                            dowloadApdapter.clearListchose();
                         } else {
-                            ResulfActivity.this.dowloadApdapter.choseall();
-                            ResulfActivity.this.img_choseall.setImageResource(R.drawable.blackcheck);
+                            dowloadApdapter.choseall();
+                            img_choseall.setImageResource(R.drawable.blackcheck);
                         }
-                        TextView textView4 = ResulfActivity.this.txt_count_file;
-                        textView4.setText("Select all( " + ResulfActivity.this.dowloadApdapter.posadd.size() + " )");
+                        TextView textView4 = txt_count_file;
+                        textView4.setText("Select all( " + dowloadApdapter.posadd.size() + " )");
                         return;
                     default:
                         return;
@@ -1399,7 +1264,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         if (collections) {
             collections = false;
             finish();
-            Animatoo.animateSwipeRight(this);
+            //Animatoo.animateSwipeRight(this);
         }
         if (isSelection) {
             contentPerent();
@@ -1408,10 +1273,10 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             if (sdCardmode && path.getPath().equals(externalSD_root.getPath())) {
                 sdCardmode = false;
                 finish();
-                Animatoo.animateSwipeRight(this);
+                //Animatoo.animateSwipeRight(this);
             } else if (path.getPath().equals(Environment.getExternalStorageDirectory().getPath())) {
                 finish();
-                Animatoo.animateSwipeRight(this);
+                //Animatoo.animateSwipeRight(this);
             } else {
                 contentPerent();
             }
@@ -1421,11 +1286,10 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     }
 
     private void contentPerent() {
-        File file = new File(path.getParent());
-        path = file;
-        this.textView_title.setText(file.toString());
+        path= new File(path.getParent());
+        this.textView_title.setText(path.toString());
         checkEmpty(path.listFiles().length);
-        this.data_manager.setRecycler(file, sortFlag);
+        this.data_manager.setRecycler(path, sortFlag);
         if (sdCardmode) {
             documentFile = documentFile.getParentFile();
         }
@@ -1447,9 +1311,8 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         this.musicUltil = new MusicUltil(this);
         this.image_ultil = new Image_Ultil(this);
         this.video_ultil = new Video_Ultil(this);
-        Data_Manager data_Manager = new Data_Manager(this);
-        this.data_manager = data_Manager;
-        data_Manager.setDocs();
+        this.data_manager  = new Data_Manager(this);
+        this.data_manager .setDocs();
     }
 
 
@@ -1469,8 +1332,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
 
     private void MusicUi() {
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "music", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter = new MusicAdapter(this, this, "music", this.launcher);
         musicAdapter.setList(this.musicUltil.allsong());
         this.musicAdapter.setAdapterAnimation(new ScaleInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1479,8 +1341,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
 
     private void ImageAlbum() {
         this.recyclerView.setLayoutManager(new GridLayoutManager((Context) this, 2, RecyclerView.VERTICAL, false));
-        ImageAlbumAdapter imageAlbumAdapter = new ImageAlbumAdapter(this, this, this.launcher);
-        this.imageAlbumAdapter = imageAlbumAdapter;
+        this.imageAlbumAdapter = new ImageAlbumAdapter(this, this, this.launcher);
         imageAlbumAdapter.setList(this.image_ultil.updatealbumimage());
         this.imageAlbumAdapter.setSave_list(this.file_dtos_image);
         this.recyclerView.setAdapter(this.imageAlbumAdapter);
@@ -1489,8 +1350,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
 
     private void VideoAlbum() {
         this.recyclerView.setLayoutManager(new GridLayoutManager((Context) this, 2, RecyclerView.VERTICAL, false));
-        VideoAlbumAdapter videoAlbumAdapter = new VideoAlbumAdapter(this, this, "videoalbum", this.launcher);
-        this.videoAlbumAdapter = videoAlbumAdapter;
+        this.videoAlbumAdapter = new VideoAlbumAdapter(this, this, "videoalbum", this.launcher);
         videoAlbumAdapter.setList(this.file_dtos_video);
         this.videoAlbumAdapter.setSave_list(this.file_dtos_video);
         this.videoAlbumAdapter.setBitmaps(this.video_ultil.bitmaps(this.file_dtos_video));
@@ -1501,8 +1361,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     private void txtUi() {
         this.file_document = this.data_manager.getfiletxt();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "txt", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter = new MusicAdapter(this, this, "txt", this.launcher);
         musicAdapter.setList(this.file_document);
         this.musicAdapter.setAdapterAnimation(new AlphaInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1513,8 +1372,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     private void DocUi() {
         this.file_document = this.data_manager.getfidocx();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "docx", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter = new MusicAdapter(this, this, "docx", this.launcher);
         musicAdapter.setList(this.file_document);
         this.musicAdapter.setAdapterAnimation(new AlphaInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1525,8 +1383,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     private void PdfUi() {
         this.file_document = this.data_manager.getfilepdf();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "pdf", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter= new MusicAdapter(this, this, "pdf", this.launcher);
         musicAdapter.setList(this.file_document);
         this.musicAdapter.setAdapterAnimation(new AlphaInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1537,8 +1394,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     private void PptUi() {
         this.file_document = this.data_manager.getfileppt();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "ppt", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter= new MusicAdapter(this, this, "ppt", this.launcher);
         musicAdapter.setList(this.file_document);
         this.musicAdapter.setAdapterAnimation(new AlphaInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1549,8 +1405,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
     private void XlstUi() {
         this.file_document = this.data_manager.getfilexls();
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-        MusicAdapter musicAdapter = new MusicAdapter(this, this, "xls", this.launcher);
-        this.musicAdapter = musicAdapter;
+        this.musicAdapter = new MusicAdapter(this, this, "xls", this.launcher);
         musicAdapter.setList(this.file_document);
         this.musicAdapter.setAdapterAnimation(new AlphaInAnimation());
         this.recyclerView.setAdapter(this.musicAdapter);
@@ -1564,7 +1419,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void update(String str) {
                 Intent intent = new Intent("android.intent.action.DELETE");
                 intent.setData(Uri.parse("package:" + str));
-                ResulfActivity.this.activityResultLauncher.launch(intent);
+                activityResultLauncher.launch(intent);
             }
         };
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -1709,29 +1564,29 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void onClick(View view, int i) {
                 Intent intent = null;
                 if (!ResulfActivity.isSelection) {
-                    ResulfActivity.path = ResulfActivity.this.data_manager.getFiles(i);
+                    ResulfActivity.path = data_manager.getFiles(i);
                     if (ResulfActivity.favourites) {
                         ResulfActivity.favourites = false;
                     }
                     if (ResulfActivity.isPasteMode) {
-                        ResulfActivity.this.actionMode.setTitle(ResulfActivity.path.getName());
+                        actionMode.setTitle(ResulfActivity.path.getName());
                     }
                     if (ResulfActivity.path.isDirectory()) {
                         if (ResulfActivity.collections) {
                             ResulfActivity.collections = false;
                         }
                         if (ResulfActivity.sdCardmode) {
-                            ResulfActivity.documentFile = ResulfActivity.documentFile.findFile(ResulfActivity.this.data_manager.getName(i));
+                            ResulfActivity.documentFile = ResulfActivity.documentFile.findFile(data_manager.getName(i));
                         }
                         if (ResulfActivity.path.getName().equals("data") && Build.VERSION.SDK_INT >= 30) {
-                            ResulfActivity.this.restrict_dialog();
+                            restrict_dialog();
                         }
-                        ResulfActivity.this.data_manager.setRecycler(ResulfActivity.path, ResulfActivity.sortFlag);
-                        ResulfActivity.this.recyclerView.scrollToPosition(0);
+                        data_manager.setRecycler(ResulfActivity.path, ResulfActivity.sortFlag);
+                        recyclerView.scrollToPosition(0);
                         if (!ResulfActivity.gridView) {
-                            ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                            myRecyclerAdapter.notifyDataSetChanged();
                         } else {
-                            ResulfActivity.this.adapter.notifyDataSetChanged();
+                            adapter.notifyDataSetChanged();
                         }
                     } else {
                         try {
@@ -1752,13 +1607,13 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                                 intent.setAction("android.intent.action.VIEW");
                                 intent.setDataAndType(fromFile, contentType);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                ResulfActivity.this.startActivity(intent);
+                                startActivity(intent);
                                 if (!ResulfActivity.collections) {
                                     ResulfActivity.path = ResulfActivity.path.getParentFile();
                                 }
                             }
                             new Ultil(ResulfActivity.this).installAPK(ResulfActivity.path.getPath());
-                            ResulfActivity.this.startActivity(intent);
+                            startActivity(intent);
                             if (!ResulfActivity.collections) {
                             }
                         }
@@ -1773,51 +1628,50 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                         intent2.putExtra("hidefile", "internal");
                         intent2.putExtra("pos", i);
                         intent = intent2;
-                        ResulfActivity.this.startActivity(intent);
+                        startActivity(intent);
                         if (!ResulfActivity.collections) {
                         }
                     }
                 } else if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.toggleSelection(i);
-                    if (ResulfActivity.this.myRecyclerAdapter.getSelectedItemCount() > 1) {
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.rename).setEnabled(false);
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.properties).setEnabled(false);
+                    myRecyclerAdapter.toggleSelection(i);
+                    if (myRecyclerAdapter.getSelectedItemCount() > 1) {
+                        actionMode.getMenu().findItem(R.id.rename).setEnabled(false);
+                        actionMode.getMenu().findItem(R.id.properties).setEnabled(false);
                     }
-                    if (ResulfActivity.this.myRecyclerAdapter.getSelectedItemCount() == 1) {
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.rename).setEnabled(true);
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.properties).setEnabled(true);
+                    if (myRecyclerAdapter.getSelectedItemCount() == 1) {
+                        actionMode.getMenu().findItem(R.id.rename).setEnabled(true);
+                        actionMode.getMenu().findItem(R.id.properties).setEnabled(true);
                     }
-                    ActionMode actionMode = ResulfActivity.this.actionMode;
-                    actionMode.setTitle(ResulfActivity.this.myRecyclerAdapter.getSelectedItemCount() + " Selected");
-                    if (ResulfActivity.this.myRecyclerAdapter.getSelectedItemCount() == 0) {
-                        ResulfActivity.this.myRecyclerAdapter.clearSelection();
+                    actionMode.setTitle(myRecyclerAdapter.getSelectedItemCount() + " Selected");
+                    if (myRecyclerAdapter.getSelectedItemCount() == 0) {
+                        myRecyclerAdapter.clearSelection();
                         ResulfActivity.isSelection = false;
-                        ResulfActivity.this.actionMode.finish();
+                        actionMode.finish();
                     }
                 } else {
-                    ResulfActivity.this.adapter.toggleSelection(i);
-                    if (ResulfActivity.this.adapter.getSelectedItemCount() > 1) {
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.rename).setEnabled(false);
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.properties).setEnabled(false);
+                    adapter.toggleSelection(i);
+                    if (adapter.getSelectedItemCount() > 1) {
+                        actionMode.getMenu().findItem(R.id.rename).setEnabled(false);
+                        actionMode.getMenu().findItem(R.id.properties).setEnabled(false);
                     }
-                    if (ResulfActivity.this.adapter.getSelectedItemCount() == 1) {
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.rename).setEnabled(true);
-                        ResulfActivity.this.actionMode.getMenu().findItem(R.id.properties).setEnabled(true);
+                    if (adapter.getSelectedItemCount() == 1) {
+                        actionMode.getMenu().findItem(R.id.rename).setEnabled(true);
+                        actionMode.getMenu().findItem(R.id.properties).setEnabled(true);
                     }
-                    ActionMode actionMode2 = ResulfActivity.this.actionMode;
-                    actionMode2.setTitle(ResulfActivity.this.adapter.getSelectedItemCount() + " Selected");
-                    if (ResulfActivity.this.adapter.getSelectedItemCount() == 0) {
-                        ResulfActivity.this.adapter.clearSelection();
+                    ActionMode actionMode2 = actionMode;
+                    actionMode2.setTitle(adapter.getSelectedItemCount() + " Selected");
+                    if (adapter.getSelectedItemCount() == 0) {
+                        adapter.clearSelection();
                         ResulfActivity.isSelection = false;
-                        ResulfActivity.this.actionMode.finish();
+                        actionMode.finish();
                     }
                 }
                 try {
-                    ResulfActivity.this.checkEmpty(ResulfActivity.path.listFiles().length);
+                    checkEmpty(ResulfActivity.path.listFiles().length);
                 } catch (Exception unused2) {
-                    ResulfActivity.this.checkEmpty(0);
+                    checkEmpty(0);
                 }
-                ResulfActivity.this.textView_title.setText(ResulfActivity.path.toString());
+                textView_title.setText(ResulfActivity.path.toString());
             }
 
             @Override
@@ -1827,22 +1681,22 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                 }
                 if (ResulfActivity.gridView) {
                     ResulfActivity.relativeLayout_head.setVisibility(View.GONE);
-                    ResulfActivity.this.adapter.toggleSelection(i);
+                    adapter.toggleSelection(i);
                     ResulfActivity resulfActivity = ResulfActivity.this;
                     GridAdapter gridAdapter = resulfActivity.adapter;
                     ResulfActivity resulfActivity2 = ResulfActivity.this;
                     resulfActivity.actionMode = resulfActivity.startActionMode(new ActionModeCallBack(gridAdapter, resulfActivity2, resulfActivity2.data_manager, ResulfActivity.sortFlag));
-                    ResulfActivity.this.actionMode.setTitle("1 Selected");
+                    actionMode.setTitle("1 Selected");
                     ResulfActivity.isSelection = true;
                     return;
                 }
                 ResulfActivity.relativeLayout_head.setVisibility(View.GONE);
-                ResulfActivity.this.myRecyclerAdapter.toggleSelection(i);
+                myRecyclerAdapter.toggleSelection(i);
                 ResulfActivity resulfActivity3 = ResulfActivity.this;
                 MyRecyclerAdapter myRecyclerAdapter = resulfActivity3.myRecyclerAdapter;
                 ResulfActivity resulfActivity4 = ResulfActivity.this;
                 resulfActivity3.actionMode = resulfActivity3.startActionMode(new ActionModeCallBack(myRecyclerAdapter, resulfActivity4, resulfActivity4.data_manager, ResulfActivity.sortFlag));
-                ResulfActivity.this.actionMode.setTitle("1 Selected");
+                actionMode.setTitle("1 Selected");
                 ResulfActivity.isSelection = true;
             }
         }));
@@ -1879,11 +1733,11 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                     intent2.putExtra("file_dto", file_DTO);
                     intent2.putExtra("hidefile", "internal");
                     intent2.putExtra("pos", i);
-                    ResulfActivity.this.startActivity(intent2);
-                    Animatoo.animateSwipeLeft(ResulfActivity.this);
+                    startActivity(intent2);
+                  //  Animatoo.animateSwipeLeft(ResulfActivity.this);
                 }
                 try {
-                    ResulfActivity.this.startActivity(intent);
+                    startActivity(intent);
                 } catch (ActivityNotFoundException unused) {
                     Toast.makeText(ResulfActivity.this, "No App found to open requested file type", Toast.LENGTH_SHORT).show();
                 }
@@ -2040,7 +1894,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         intent.putExtra("hidefile", "hidefile");
         intent.putExtra("pos", i);
         startActivity(intent);
-        Animatoo.animateSwipeLeft(this);
+      //  Animatoo.animateSwipeLeft(this);
     }
 
     @Override
@@ -2077,7 +1931,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
         intent.putExtra("file_dto", this.videoAlbumAdapter.getData().get(i));
         intent.putExtra("check", "video");
         startActivity(intent);
-        Animatoo.animateSwipeLeft(this);
+      //  Animatoo.animateSwipeLeft(this);
     }
 
     @Override
@@ -2237,16 +2091,16 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void onClick(View view) {
                 ResulfActivity.sortFlag = 1;
                 if (ResulfActivity.collections) {
-                    ResulfActivity.this.data_manager.sortCollectionsByName();
+                    data_manager.sortCollectionsByName();
                 } else {
                     ResulfActivity.sortFlag = 1;
                 }
                 sharepre_Ulti.writeSharedPrefs("Chosed", 1);
-                ResulfActivity.this.refresh();
+                refresh();
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                    myRecyclerAdapter.notifyDataSetChanged();
                 } else {
-                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
                 dialog.dismiss();
             }
@@ -2256,16 +2110,16 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void onClick(View view) {
                 ResulfActivity.sortFlag = 2;
                 if (ResulfActivity.collections) {
-                    ResulfActivity.this.data_manager.sortCollectionsByDate();
+                    data_manager.sortCollectionsByDate();
                 } else {
                     ResulfActivity.sortFlag = 2;
                 }
                 sharepre_Ulti.writeSharedPrefs("Chosed", 4);
-                ResulfActivity.this.refresh();
+                refresh();
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                    myRecyclerAdapter.notifyDataSetChanged();
                 } else {
-                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
                 dialog.dismiss();
             }
@@ -2274,11 +2128,11 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             @Override
             public void onClick(View view) {
                 sharepre_Ulti.writeSharedPrefs("Chosed", 2);
-                ResulfActivity.this.refresh();
+                refresh();
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                    myRecyclerAdapter.notifyDataSetChanged();
                 } else {
-                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
                 dialog.dismiss();
             }
@@ -2288,16 +2142,16 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
             public void onClick(View view) {
                 ResulfActivity.sortFlag = 3;
                 if (ResulfActivity.collections) {
-                    ResulfActivity.this.data_manager.sortCollectionsBySize();
+                    data_manager.sortCollectionsBySize();
                 } else {
                     ResulfActivity.sortFlag = 3;
                 }
                 sharepre_Ulti.writeSharedPrefs("Chosed", 3);
-                ResulfActivity.this.refresh();
+                refresh();
                 if (!ResulfActivity.gridView) {
-                    ResulfActivity.this.myRecyclerAdapter.notifyDataSetChanged();
+                    myRecyclerAdapter.notifyDataSetChanged();
                 } else {
-                    ResulfActivity.this.adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 }
                 dialog.dismiss();
             }
@@ -2329,7 +2183,7 @@ public class ResulfActivity extends AppCompatActivity implements MusicAdapter.On
                 } else {
                     ResulfActivity.documentFile.createDirectory(editText.getText().toString());
                 }
-                ResulfActivity.this.refresh();
+                refresh();
                 dialog.cancel();
             }
         });

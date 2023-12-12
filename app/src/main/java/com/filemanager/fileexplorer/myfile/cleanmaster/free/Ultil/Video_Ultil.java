@@ -53,16 +53,16 @@ public class Video_Ultil {
                 StringBuilder sb = new StringBuilder();
                 sb.append("");
                 int i = 0;
-                sb.append(query.getString(query.getColumnIndex(strArr[0])));
+                sb.append(query.getString((int)query.getColumnIndex(strArr[0])));
                 String sb2 = sb.toString();
                 if (sb2.equals("null")) {
                     sb2 = "Unknow";
                 }
-                String string = query.getString(query.getColumnIndex(strArr[1]));
-                long j = query.getLong(query.getColumnIndex(strArr[2])) * 1000;
-                long j2 = query.getLong(query.getColumnIndex(strArr[4]));
-                String string2 = query.getString(query.getColumnIndex(strArr[5]));
-                Long valueOf = Long.valueOf(query.getLong(query.getColumnIndex(strArr[3])));
+                String string = query.getString((int)query.getColumnIndex(strArr[1]));
+                long j = query.getLong((int)query.getColumnIndex(strArr[2])) * 1000;
+                long j2 = query.getLong((int)query.getColumnIndex(strArr[4]));
+                String string2 = query.getString((int)query.getColumnIndex(strArr[5]));
+                Long valueOf = Long.valueOf(query.getLong((int)query.getColumnIndex(strArr[3])));
                 if (new File(string).exists()) {
                     if (arrayList2.contains(sb2)) {
                         while (true) {
@@ -116,12 +116,12 @@ public class Video_Ultil {
         if (query != null) {
             while (query.moveToNext()) {
                 try {
-                    String string = query.getString(query.getColumnIndex(strArr[0]));
-                    String string2 = query.getString(query.getColumnIndex(strArr[1]));
-                    long j = query.getLong(query.getColumnIndex(strArr[2])) * 1000;
-                    long j2 = query.getLong(query.getColumnIndex(strArr[4]));
-                    String string3 = query.getString(query.getColumnIndex(strArr[5]));
-                    Long valueOf = Long.valueOf(query.getLong(query.getColumnIndex(strArr[3])));
+                    String string = query.getString((int)query.getColumnIndex(strArr[0]));
+                    String string2 = query.getString((int)query.getColumnIndex(strArr[1]));
+                    long j = query.getLong((int)query.getColumnIndex(strArr[2])) * 1000;
+                    long j2 = query.getLong((int)query.getColumnIndex(strArr[4]));
+                    String string3 = query.getString((int)query.getColumnIndex(strArr[5]));
+                    Long valueOf = Long.valueOf(query.getLong((int)query.getColumnIndex(strArr[3])));
                     String string4 = query.getString(query.getColumnIndexOrThrow(strArr[6]));
                     if (new File(string2).exists()) {
                         File_DTO file_DTO = new File_DTO();
