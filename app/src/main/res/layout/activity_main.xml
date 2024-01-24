@@ -238,42 +238,6 @@
                         android:layout_marginStart="@dimen/_20sdp" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/r_feed_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp">
-
-                    <ImageView
-                        android:id="@+id/img_fe"
-                        android:padding="@dimen/_5sdp"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/button_feedback"
-                        android:layout_centerVertical="true" />
-
-                    <TextView
-                        android:textSize="@dimen/_12ssp"
-                        android:textColor="@color/black"
-                        android:gravity="clip_vertical"
-                        android:layout_gravity="center_horizontal"
-                        android:id="@+id/txt_fe"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/feedback"
-                        android:layout_toRightOf="@+id/img_fe"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/nunrinoregular"
-                        android:layout_marginStart="@dimen/_20sdp" />
-
-                    <View
-                        android:background="@color/backgrounditem"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/img_fe"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="@dimen/_20sdp" />
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/r_rate"
@@ -312,42 +276,6 @@
                         android:layout_marginStart="@dimen/_20sdp" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/r_moreapp"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_50sdp">
-
-                    <ImageView
-                        android:id="@+id/img_moreapp"
-                        android:padding="@dimen/_5sdp"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/button_app"
-                        android:layout_centerVertical="true" />
-
-                    <TextView
-                        android:textSize="@dimen/_12ssp"
-                        android:textColor="@color/black"
-                        android:gravity="clip_vertical"
-                        android:layout_gravity="center_horizontal"
-                        android:id="@+id/txt_moreapp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/more_apps"
-                        android:layout_toRightOf="@+id/img_moreapp"
-                        android:layout_centerVertical="true"
-                        android:fontFamily="@font/nunrinoregular"
-                        android:layout_marginStart="@dimen/_20sdp" />
-
-                    <View
-                        android:background="@color/backgrounditem"
-                        android:layout_width="match_parent"
-                        android:layout_height="0.3dp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_toRightOf="@+id/img_moreapp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="@dimen/_20sdp" />
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/r_lan"

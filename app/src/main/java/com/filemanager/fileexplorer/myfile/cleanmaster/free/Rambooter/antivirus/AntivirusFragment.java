@@ -1,5 +1,6 @@
 package com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.antivirus;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -341,7 +342,7 @@ public class AntivirusFragment extends Fragment implements MonitorShieldService.
     private void makeActionOverflowMenuShown() {
         try {
             ViewConfiguration viewConfiguration = ViewConfiguration.get(getActivity());
-            Field declaredField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            @SuppressLint("SoonBlockedPrivateApi") Field declaredField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
             if (declaredField != null) {
                 declaredField.setAccessible(true);
                 declaredField.setBoolean(viewConfiguration, false);

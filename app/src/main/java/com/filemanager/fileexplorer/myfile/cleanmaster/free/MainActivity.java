@@ -63,9 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView_laucher;
     private ImageView img_opendrawer;
     private boolean isopen;
-    private RelativeLayout r_feedback;
     private RelativeLayout r_lan;
-    private RelativeLayout r_moreapp;
     private RelativeLayout r_rate;
     private RelativeLayout r_recycle;
     private RelativeLayout r_share;
@@ -95,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
         this.r_lan = (RelativeLayout) findViewById(R.id.r_lan);
         this.r_share = (RelativeLayout) findViewById(R.id.r_share);
         this.r_rate = (RelativeLayout) findViewById(R.id.r_rate);
-        this.r_moreapp = (RelativeLayout) findViewById(R.id.r_moreapp);
-        this.r_feedback = (RelativeLayout) findViewById(R.id.r_feed_back);
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, this.drawerLayout, this.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         this.drawerToggle = actionBarDrawerToggle;
@@ -204,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent("android.intent.action.VIEW");
-                intent.setData(Uri.parse("https://filemanagerfileexplorer.blogspot.com/2022/01/privacy-policy-for-file-explorer-my.html"));
+                intent.setData(Uri.parse("https://www.google.com"));
                 MainActivity.this.startActivity(intent);
             }
         });
@@ -214,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Intent intent = new Intent("android.intent.action.SEND");
                     intent.setType("text/plain");
-                    intent.putExtra("android.intent.extra.SUBJECT", "Remi Filemanager");
+                    intent.putExtra("android.intent.extra.SUBJECT", "Recommend");
                     intent.putExtra("android.intent.extra.TEXT", "\nLet me recommend you this application\n\nhttps://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID + "\n\n");
                     MainActivity.this.startActivity(Intent.createChooser(intent, "choose one"));
                 } catch (Exception unused) {
@@ -227,18 +223,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.rateApp();
             }
         });
-        this.r_feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.this.composeEmail(new String[]{"tatcachilathuthach92@gmail.com"}, "File manager feedback");
-            }
-        });
-        this.r_moreapp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.this.moreApps();
-            }
-        });
+
     }
 
 
@@ -266,13 +251,6 @@ public class MainActivity extends AppCompatActivity {
         return intent;
     }
 
-    public void moreApps() {
-        try {
-            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://search?q=pub:REMI Studio")));
-        } catch (ActivityNotFoundException unused) {
-            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://play.google.com/store/search?q=pub:REMI Studio")));
-        }
-    }
 
 
     @Override
