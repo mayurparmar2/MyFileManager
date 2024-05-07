@@ -1,110 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="#ffffff"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff"
 
-    <RelativeLayout
-        android:padding="@dimen/_10sdp"
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:id="@+id/img_skip"
-            android:background="@drawable/bgrskip"
-            android:padding="@dimen/_2sdp"
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:text="Skip"
-            android:layout_alignParentRight="true"
-            android:fontFamily="@font/nuntinobold" />
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@id/banner1"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/img_skip"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bgrskip"
+                android:fontFamily="@font/nuntinobold"
+                android:gravity="center"
+                android:padding="@dimen/_2sdp"
+                android:text="Skip"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:padding="@dimen/_10sdp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/_25sdp"
+                android:paddingRight="@dimen/_25sdp"
+                android:paddingBottom="@dimen/_30sdp"
+                android:src="@drawable/bbred" />
+
+            <com.zhpan.indicator.IndicatorView
+                android:id="@+id/indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_5sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/txt_bold"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/nuntinobold"
+                android:gravity="center"
+                android:text="Simplify your filling system"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/txt_thin"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/nunrinoregular"
+                android:gravity="center"
+                android:text="NAME_APP is a free, secure tool that helps you find file faster, manage files easily"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tvReadMore"
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txt_thin"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:fontFamily="@font/nunrinoregular"
+                android:gravity="center"
+                android:text="@string/read_more"
+                android:textColor="#12c2e9"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/img_next"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_15sdp"
+                android:background="@drawable/slide_icon_bgr"
+                android:fontFamily="@font/nuntinobold"
+                android:gravity="center"
+                android:textColor="#ffd600" />
+        </RelativeLayout>
+    </LinearLayout>
+
 
     <RelativeLayout
-        android:padding="@dimen/_10sdp"
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager1"
+        <RelativeLayout
+            android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="4">
+</RelativeLayout>
 
-        <ImageView
-            android:paddingLeft="@dimen/_25sdp"
-            android:paddingRight="@dimen/_25sdp"
-            android:paddingBottom="@dimen/_30sdp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bbred" />
-
-        <com.zhpan.indicator.IndicatorView
-            android:id="@+id/indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:textSize="@dimen/_14sdp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:id="@+id/txt1"
-            android:layout_width="@dimen/_110sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Simplify your filling system"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nuntinobold" />
-
-        <TextView
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:id="@+id/txt2"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="NAME_APP is a free, secure tool that helps you find file faster, manage files easily"
-            android:layout_below="@+id/txt1"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nunrinoregular" />
-
-        <TextView
-            android:textSize="@dimen/_10sdp"
-            android:textColor="#12c2e9"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/tvReadMore"
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:text="@string/read_more"
-            android:layout_below="@+id/txt2"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nunrinoregular" />
-
-        <TextView
-            android:textColor="#ffd600"
-            android:gravity="center"
-            android:id="@+id/img_next"
-            android:background="@drawable/slide_icon_bgr"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="@dimen/_55sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/nuntinobold" />
-    </RelativeLayout>
-</LinearLayout>

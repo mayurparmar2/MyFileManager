@@ -16,15 +16,9 @@ import com.chad.library.adapter.base.listener.OnItemSwipeListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import java.util.*
 
-/**
- * @author: limuyang
- * @date: 2019-12-05
- * @Description:
- */
 
-/**
- * 需要【拖拽】功能的，[BaseQuickAdapter]继承此接口
- */
+
+
 interface DraggableModule
 
 open class BaseDraggableModule(private val baseQuickAdapter: BaseQuickAdapter<*, *>) : DraggableListenerImp {
@@ -70,18 +64,12 @@ open class BaseDraggableModule(private val baseQuickAdapter: BaseQuickAdapter<*,
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    /**
-     * Is there a toggle view which will trigger drag event.
-     */
+    
     open fun hasToggleView(): Boolean {
         return toggleViewId != NO_TOGGLE_VIEW
     }
 
-    /**
-     * Set the drag event should be trigger on long press.
-     * Work when the toggleViewId has been set.
-     *
-     */
+    
     open var isDragOnLongPressEnabled = true
         set(value) {
             field = value
@@ -113,7 +101,7 @@ open class BaseDraggableModule(private val baseQuickAdapter: BaseQuickAdapter<*,
         return viewHolder.adapterPosition - baseQuickAdapter.headerLayoutCount
     }
 
-    /************************* Drag *************************/
+    
 
     open fun onItemDragStart(viewHolder: RecyclerView.ViewHolder) {
         mOnItemDragListener?.onItemDragStart(viewHolder, getViewHolderPosition(viewHolder))
@@ -141,7 +129,7 @@ open class BaseDraggableModule(private val baseQuickAdapter: BaseQuickAdapter<*,
         mOnItemDragListener?.onItemDragEnd(viewHolder, getViewHolderPosition(viewHolder))
     }
 
-    /************************* Swipe *************************/
+    
 
     open fun onItemSwipeStart(viewHolder: RecyclerView.ViewHolder) {
         if (isSwipeEnabled) {
@@ -176,10 +164,7 @@ open class BaseDraggableModule(private val baseQuickAdapter: BaseQuickAdapter<*,
         return position >= 0 && position < baseQuickAdapter.data.size
     }
 
-    /**
-     * 设置监听
-     * @param onItemDragListener OnItemDragListener?
-     */
+    
     override fun setOnItemDragListener(onItemDragListener: OnItemDragListener?) {
         this.mOnItemDragListener = onItemDragListener
     }

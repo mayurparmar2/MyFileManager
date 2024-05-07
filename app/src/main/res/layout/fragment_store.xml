@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content">
 
                 <Spinner
-                    android:id="@+id/spiner"
+                    android:id="@+id/spinner_storage"
                     android:background="@drawable/rounder_textview"
                     android:layout_width="@dimen/_85sdp"
                     android:layout_height="@dimen/_30sdp"
@@ -38,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_below="@+id/spiner">
+                    android:layout_below="@+id/spinner_storage">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/img1"
@@ -62,7 +62,7 @@
                     <TextView
                         android:textSize="@dimen/_9ssp"
                         android:textColor="@color/black"
-                        android:id="@+id/count_tutolspace"
+                        android:id="@+id/textView_space"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_20sdp"
@@ -101,7 +101,7 @@
                     <TextView
                         android:textSize="@dimen/_9ssp"
                         android:textColor="@color/black"
-                        android:id="@+id/count_used"
+                        android:id="@+id/textView_used"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/_20sdp"
@@ -111,8 +111,8 @@
                         android:fontFamily="@font/fontbold" />
                 </RelativeLayout>
 
-                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CircularProgressIndicator
-                    android:id="@+id/circular_progress"
+                <com.demo.filemanager.Activity.customview.CircularProgressIndicator
+                    android:id="@+id/circleIndicator"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="@dimen/_20ssp"
@@ -160,7 +160,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_image"
+                            android:id="@+id/linearLayout_img"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -187,7 +187,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/t_countImage"
+                                android:id="@+id/t_countimg"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -197,7 +197,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_video"
+                            android:id="@+id/linearLayout_video"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -224,7 +224,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countvideo"
+                                android:id="@+id/t_coutvidep"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -234,7 +234,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_music"
+                            android:id="@+id/linearLayout_music"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -261,7 +261,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countmusic"
+                                android:id="@+id/t_countmusic"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -271,7 +271,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_document"
+                            android:id="@+id/linearLayout_Document"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -298,7 +298,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_count_document"
+                                android:id="@+id/t_count_document"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -317,7 +317,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_zip"
+                            android:id="@+id/linearLayout_zip"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -344,7 +344,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countzip"
+                                android:id="@+id/t_countzip"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -354,7 +354,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_apps"
+                            android:id="@+id/linearLayout_app"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -381,7 +381,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countapp"
+                                android:id="@+id/t_countapp"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -391,7 +391,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_APKs"
+                            android:id="@+id/linearLayout_apk"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -428,7 +428,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_newfile"
+                            android:id="@+id/linearLayout_newfiles"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -474,7 +474,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_dowloaded"
+                            android:id="@+id/linearLayout_dowload"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -502,7 +502,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countdowload"
+                                android:id="@+id/t_count_dowload"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:text="0"
@@ -512,7 +512,7 @@
                         <LinearLayout
                             android:gravity="center"
                             android:orientation="vertical"
-                            android:id="@+id/l_favaorite"
+                            android:id="@+id/l_favourite"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -613,7 +613,7 @@
                                 android:textSize="@dimen/_6ssp"
                                 android:textColor="@color/black"
                                 android:gravity="center"
-                                android:id="@+id/txt_countrecycle"
+                                android:id="@+id/t_countrecycle"
                                 android:layout_width="@dimen/_40sdp"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nuntinolight" />
@@ -648,10 +648,11 @@
                     android:fontFamily="@font/nunrinoregular" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleview_recent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleview_recent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

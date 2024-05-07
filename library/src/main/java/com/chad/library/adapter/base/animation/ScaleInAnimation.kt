@@ -5,9 +5,7 @@ import android.animation.ObjectAnimator
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 
-/**
- * https://github.com/CymChad/BaseRecyclerViewAdapterHelper
- */
+
 class ScaleInAnimation @JvmOverloads constructor(private val mFrom: Float = DEFAULT_SCALE_FROM) : BaseAnimation {
 
     override fun animators(view: View): Array<Animator> {

@@ -9,24 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.binder.BaseItemBinder
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
-/**
- * 使用 Binder 来实现adapter，既可以实现单布局，也能实现多布局
- * 数据实体类也不存继承问题
- *
- * 当有多种条目的时候，避免在convert()中做太多的业务逻辑，把逻辑放在对应的 BaseItemBinder 中。
- * 适用于以下情况：
- * 1、实体类不方便扩展，此Adapter的数据类型可以是任意类型，默认情况下不需要实现 getItemType
- * 2、item 类型较多，在convert()中管理起来复杂
- *
- * ViewHolder 由 [BaseItemBinder] 实现，并且每个[BaseItemBinder]可以拥有自己类型的ViewHolder类型。
- *
- * 数据类型为Any
- */
+
 open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<Any, BaseViewHolder>(0, list) {
 
-    /**
-     * 用于存储每个 Binder 类型对应的 Diff
-     */
+    
     private val classDiffMap = HashMap<Class<*>, DiffUtil.ItemCallback<Any>?>()
 
     private val mTypeMap = HashMap<Class<*>, Int>()
@@ -36,9 +22,7 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
         setDiffCallback(ItemCallback())
     }
 
-    /**
-     * 添加 ItemBinder
-     */
+    
     @JvmOverloads
     fun <T : Any> addItemBinder(clazz: Class<out T>, baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BaseBinderAdapter {
         val itemType = mTypeMap.size + 1
@@ -51,9 +35,7 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
         return this
     }
 
-    /**
-     * kotlin 可以使用如下方法添加 ItemBinder，更加简单
-     */
+    
     inline fun <reified T : Any> addItemBinder(baseItemBinder: BaseItemBinder<T, *>, callback: DiffUtil.ItemCallback<T>? = null): BaseBinderAdapter {
         addItemBinder(T::class.java, baseItemBinder, callback)
         return this
@@ -118,8 +100,8 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
 
     protected open fun bindClick(viewHolder: BaseViewHolder) {
         if (getOnItemClickListener() == null) {
-            //如果没有设置点击监听，则回调给 itemProvider
-            //Callback to itemProvider if no click listener is set
+            
+            
             viewHolder.itemView.setOnClickListener {
                 var position = viewHolder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {
@@ -134,8 +116,8 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
             }
         }
         if (getOnItemLongClickListener() == null) {
-            //如果没有设置长按监听，则回调给itemProvider
-            // If you do not set a long press listener, callback to the itemProvider
+            
+            
             viewHolder.itemView.setOnLongClickListener {
                 var position = viewHolder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {
@@ -192,9 +174,7 @@ open class BaseBinderAdapter(list: MutableList<Any>? = null) : BaseQuickAdapter<
     }
 
 
-    /**
-     * Diff Callback
-     */
+    
     private inner class ItemCallback : DiffUtil.ItemCallback<Any>() {
 
         override fun areItemsTheSame(oldItem: Any, newItem: Any): Boolean {

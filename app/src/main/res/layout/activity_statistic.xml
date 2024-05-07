@@ -1,42 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="10">
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        android:layout_above="@id/banner1"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nutinoremibold"
+                android:gravity="center"
+                android:text="Storage Statistic"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp" />
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/_13sdp"
+                android:src="@drawable/icon_back" />
+        </RelativeLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5" />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/sd_pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4.5" />
+    </LinearLayout>
+
 
     <RelativeLayout
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-        <TextView
-            android:textSize="@dimen/_14ssp"
-            android:textColor="@color/black"
-            android:gravity="center"
+        <RelativeLayout
+            android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Storage Statistic"
-            android:fontFamily="@font/nutinoremibold" />
-
-        <ImageView
-            android:id="@+id/img_back"
-            android:padding="@dimen/_13sdp"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="match_parent"
-            android:src="@drawable/icon_back" />
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
     </RelativeLayout>
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pie_chart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.5" />
+</RelativeLayout>
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/sd_pie_chart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4.5" />
-</LinearLayout>
+

@@ -34,8 +34,8 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
     fun addData(index: Int, data: T) {
         val previousList: List<T> = adapter.data
         adapter.data.add(index, data)
-        //        final List<T> previousList = mReadOnlyList;
-//        mReadOnlyList = Collections.unmodifiableList(adapterData);
+        
+
         mUpdateCallback.onInserted(index, 1)
         onCurrentListChanged(previousList, null)
     }
@@ -52,33 +52,29 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
         if (list == null) return
         val previousList: List<T> = adapter.data
         adapter.data.addAll(list)
-        //        final List<T> previousList = mReadOnlyList;
-//        mReadOnlyList = Collections.unmodifiableList(adapterData);
+        
+
         mUpdateCallback.onInserted(previousList.size, list.size)
         onCurrentListChanged(previousList, null)
     }
 
-    /**
-     * 改变某一个数据
-     */
+    
     fun changeData(index: Int, newData: T, payload: T?) {
         val previousList: List<T> = adapter.data
         adapter.data[index] = newData
-        //        final List<T> previousList = mReadOnlyList;
-//        mReadOnlyList = Collections.unmodifiableList(adapterData);
+        
+
         mUpdateCallback.onChanged(index, 1, payload)
         onCurrentListChanged(previousList, null)
     }
 
-    /**
-     * 移除某一个数据
-     */
+    
     fun removeAt(index: Int) {
         val previousList: List<T> = adapter.data
         adapter.data.removeAt(index)
 
-//        final List<T> previousList = mReadOnlyList;
-//        mReadOnlyList = Collections.unmodifiableList(adapterData);
+
+
         mUpdateCallback.onRemoved(index, 1)
         onCurrentListChanged(previousList, null)
     }
@@ -89,8 +85,8 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
         if (index == -1) return
         adapter.data.removeAt(index)
 
-//        final List<T> previousList = mReadOnlyList;
-//        mReadOnlyList = Collections.unmodifiableList(adapterData);
+
+
         mUpdateCallback.onRemoved(index, 1)
         onCurrentListChanged(previousList, null)
     }
@@ -98,27 +94,27 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
 
     @JvmOverloads
     fun submitList(newList: MutableList<T>?, commitCallback: Runnable? = null) {
-        // incrementing generation means any currently-running diffs are discarded when they finish
+        
         val runGeneration: Int = ++mMaxScheduledGeneration
         if (newList === adapter.data) {
-            // nothing to do (Note - still had to inc generation, since may have ongoing work)
+            
             commitCallback?.run()
             return
         }
         val oldList: List<T> = adapter.data
-        // fast simple remove all
+        
         if (newList == null) {
             val countRemoved: Int = adapter.data.size
             adapter.data = arrayListOf()
-            // notify last, after list is updated
+            
             mUpdateCallback.onRemoved(0, countRemoved)
             onCurrentListChanged(oldList, commitCallback)
             return
         }
-        // fast simple first insert
+        
         if (adapter.data.isEmpty()) {
             adapter.data = newList
-            // notify last, after list is updated
+            
             mUpdateCallback.onInserted(0, newList.size)
             onCurrentListChanged(oldList, commitCallback)
             return
@@ -140,7 +136,7 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
                     return if (oldItem != null && newItem != null) {
                         config.diffCallback.areItemsTheSame(oldItem, newItem)
                     } else oldItem == null && newItem == null
-                    // If both items are null we consider them the same.
+                    
                 }
 
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
@@ -191,25 +187,12 @@ class BrvahAsyncDiffer<T>(private val adapter: BaseQuickAdapter<T, *>,
         commitCallback?.run()
     }
 
-    /**
-     * Add a ListListener to receive updates when the current List changes.
-     *
-     * @param listener Listener to receive updates.
-     *
-     * @see .getCurrentList
-     * @see .removeListListener
-     */
+    
     override fun addListListener(listener: ListChangeListener<T>) {
         mListeners.add(listener)
     }
 
-    /**
-     * Remove a previously registered ListListener.
-     *
-     * @param listener Previously registered listener.
-     * @see .getCurrentList
-     * @see .addListListener
-     */
+    
     fun removeListListener(listener: ListChangeListener<T>) {
         mListeners.remove(listener)
     }

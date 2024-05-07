@@ -43,7 +43,7 @@
                 android:layout_margin="@dimen/_15sdp"
                 android:layout_marginTop="8dp">
 
-                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.progressWheel.ProgressWheel
+                <com.demo.filemanager.Rambooter.progressWheel.ProgressWheel
                     android:layout_gravity="left"
                     android:id="@+id/pw_spinner_internal"
                     android:visibility="gone"
@@ -191,7 +191,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.CircularProgressIndicator
+                <com.demo.filemanager.Activity.customview.CircularProgressIndicator
                     android:layout_gravity="center_vertical"
                     android:id="@+id/circular_progress"
                     android:layout_width="@dimen/_120sdp"
@@ -238,7 +238,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp">
 
-                <com.filemanager.fileexplorer.myfile.cleanmaster.free.Rambooter.progressWheel.ProgressWheel
+                <com.demo.filemanager.Rambooter.progressWheel.ProgressWheel
                     android:layout_gravity="left"
                     android:id="@+id/pw_spinner_external"
                     android:layout_width="120dp"

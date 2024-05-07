@@ -7,34 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.provider.BaseItemProvider
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
-/**
- * 当有多种条目的时候，避免在convert()中做太多的业务逻辑，把逻辑放在对应的 ItemProvider 中。
- * 适用于以下情况：
- * 1、实体类不方便扩展，此Adapter的数据类型可以是任意类型，只需要在[getItemType]中返回对应类型
- * 2、item 类型较多，在convert()中管理起来复杂
- *
- * ViewHolder 由 [BaseItemProvider] 实现，并且每个[BaseItemProvider]可以拥有自己类型的ViewHolder类型。
- *
- * @param T data 数据类型
- * @constructor
- */
+
 abstract class BaseProviderMultiAdapter<T>(data: MutableList<T>? = null) :
         BaseQuickAdapter<T, BaseViewHolder>(0, data) {
 
     private val mItemProviders by lazy(LazyThreadSafetyMode.NONE) { SparseArray<BaseItemProvider<T>>() }
 
-    /**
-     * 返回 item 类型
-     * @param data List<T>
-     * @param position Int
-     * @return Int
-     */
+    
     protected abstract fun getItemType(data: List<T>, position: Int): Int
 
-    /**
-     * 必须通过此方法，添加 provider
-     * @param provider BaseItemProvider
-     */
+    
     open fun addItemProvider(provider: BaseItemProvider<T>) {
         provider.setAdapter(this)
         mItemProviders.put(provider.itemViewType, provider)
@@ -67,14 +49,7 @@ abstract class BaseProviderMultiAdapter<T>(data: MutableList<T>? = null) :
         bindChildClick(viewHolder, viewType)
     }
 
-    /**
-     * 通过 ViewType 获取 BaseItemProvider
-     * 例如：如果ViewType经过特殊处理，可以重写此方法，获取正确的Provider
-     * （比如 ViewType 通过位运算进行的组合的）
-     *
-     * @param viewType Int
-     * @return BaseItemProvider
-     */
+    
     protected open fun getItemProvider(viewType: Int): BaseItemProvider<T>? {
         return mItemProviders.get(viewType)
     }
@@ -91,8 +66,8 @@ abstract class BaseProviderMultiAdapter<T>(data: MutableList<T>? = null) :
 
     protected open fun bindClick(viewHolder: BaseViewHolder) {
         if (getOnItemClickListener() == null) {
-            //如果没有设置点击监听，则回调给 itemProvider
-            //Callback to itemProvider if no click listener is set
+            
+            
             viewHolder.itemView.setOnClickListener {
                 var position = viewHolder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {
@@ -107,8 +82,8 @@ abstract class BaseProviderMultiAdapter<T>(data: MutableList<T>? = null) :
             }
         }
         if (getOnItemLongClickListener() == null) {
-            //如果没有设置长按监听，则回调给itemProvider
-            // If you do not set a long press listener, callback to the itemProvider
+            
+            
             viewHolder.itemView.setOnLongClickListener {
                 var position = viewHolder.adapterPosition
                 if (position == RecyclerView.NO_POSITION) {

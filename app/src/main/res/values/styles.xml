@@ -43,9 +43,12 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:fontFamily">@font/nunrinoregular</item>
     </style>
-
     <style name="PauseDialogAnimation" parent="">
         <item name="android:windowEnterAnimation">@anim/animate_slide_in_left</item>
         <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
     </style>
+<!--    <style name="PauseDialogAnimation" parent="">-->
+<!--        <item name="android:windowEnterAnimation">@anim/animate_slide_in_left</item>-->
+<!--        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>-->
+<!--    </style>-->
 </resources>

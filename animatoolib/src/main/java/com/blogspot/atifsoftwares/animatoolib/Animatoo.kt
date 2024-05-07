@@ -104,13 +104,13 @@ object Animatoo {
         )
     }
 
-//    @JvmStatic
-//    fun animateSwipeLeft(context: Context) {
-//        (context as Activity).overridePendingTransition(
-//            R.anim.animate_swipe_left_enter,
-//            R.anim.animate_swipe_left_exit
-//        )
-//    }
+
+
+
+
+
+
+
     @JvmStatic
     fun animateSwipeLeft(context: Context) {
         (context as Activity).overridePendingTransition(

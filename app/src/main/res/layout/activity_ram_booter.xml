@@ -1,59 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:background="@color/background"
-    android:padding="@dimen/_10sdp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:textSize="@dimen/_14sdp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
-            android:text="Clean Master"
-            android:fontFamily="@font/nuntinobold" />
-
-        <ImageView
-            android:id="@+id/img_back"
-            android:padding="@dimen/_3sdp"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:src="@drawable/icon_back" />
-    </RelativeLayout>
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:background="@drawable/custom_head_tabstorage"
-        android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp">
 
-        <com.filemanager.fileexplorer.myfile.cleanmaster.free.Activity.customview.tablayout.TabView
-            android:id="@+id/tabv_tab0"
-            android:padding="@dimen/_5sdp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/banner1"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_35sdp"
-            app:tabv_colorMain="#e3001b"
-            app:tabv_colorSub="#ffffff"
-            app:tabv_duration="250"
-            app:tabv_padding="0dp"
-            app:tabv_paddingSide="@dimen/_5sdp"
-            app:tabv_textSize="@dimen/_9ssp"
-            app:tabv_title="Boost Memory ;Clean Tasks;Anti Virus" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:fontFamily="@font/nuntinobold"
+                android:gravity="center"
+                android:text="Clean Master"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/icon_back" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/custom_head_tabstorage"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
+
+            <com.demo.filemanager.Activity.customview.tablayout.TabView
+                android:id="@+id/tabv_tab0"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:padding="@dimen/_5sdp"
+                app:tabv_colorMain="#e3001b"
+                app:tabv_colorSub="#ffffff"
+                app:tabv_duration="250"
+                app:tabv_padding="0dp"
+                app:tabv_paddingSide="@dimen/_5sdp"
+                app:tabv_textSize="@dimen/_9ssp"
+                app:tabv_title="Boost Memory ;Clean Tasks;Anti Virus" />
+        </LinearLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </LinearLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+
+    <RelativeLayout
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
+    </RelativeLayout>
+
+</RelativeLayout>
+
+

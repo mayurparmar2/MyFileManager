@@ -1,112 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+
+    >
 
     <RelativeLayout
-        android:id="@+id/rela_head"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp">
+
+        android:layout_height="match_parent"
+        android:layout_above="@id/banner1">
+
+        <RelativeLayout
+            android:id="@+id/rela_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp">
+
+            <ImageView
+                android:id="@+id/img_back"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_8sdp"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/img_info"
+                android:layout_toRightOf="@+id/img_back"
+                android:ellipsize="end"
+                android:fontFamily="@font/nuntinobold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Hom nay mot ngay that dep tro"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp" />
+
+            <ImageView
+                android:id="@+id/img_info"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_13sdp"
+                android:src="@drawable/img_infomation" />
+        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/img_back"
-            android:padding="@dimen/_8sdp"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/icon_back"
-            android:layout_centerVertical="true" />
+            android:id="@+id/img_giff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/l_bottom"
+            android:layout_below="@+id/rela_head" />
 
-        <TextView
-            android:textSize="@dimen/_13ssp"
-            android:textColor="@color/black"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:id="@+id/txt_title"
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/photoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/l_bottom"
+            android:layout_below="@+id/rela_head"
+            android:scaleType="fitXY" />
+
+        <LinearLayout
+            android:id="@+id/l_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hom nay mot ngay that dep tro"
-            android:maxLines="1"
-            android:layout_toLeftOf="@+id/img_info"
-            android:layout_toRightOf="@+id/img_back"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/nuntinobold" />
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:weightSum="5">
 
-        <ImageView
-            android:id="@+id/img_info"
-            android:padding="@dimen/_13sdp"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/img_infomation"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
+            <ImageView
+                android:id="@+id/img_like"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_15sdp"
+                android:src="@drawable/edit_fav" />
+
+            <ImageView
+                android:id="@+id/img_setwall"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_15sdp"
+                android:src="@drawable/edit_setim" />
+
+            <ImageView
+                android:id="@+id/img_share"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_15sdp"
+                android:src="@drawable/edit_share" />
+
+            <ImageView
+                android:id="@+id/img_recycle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_15sdp"
+                android:src="@drawable/edit_re" />
+
+            <ImageView
+                android:id="@+id/img_hide"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:padding="@dimen/_15sdp"
+                android:src="@drawable/edit_hide" />
+        </LinearLayout>
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/img_giff"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/l_bottom"
-        android:layout_below="@+id/rela_head" />
 
-    <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/photoview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:layout_above="@+id/l_bottom"
-        android:layout_below="@+id/rela_head" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/l_bottom"
-        android:background="@color/white"
-        android:paddingLeft="@dimen/_20sdp"
-        android:paddingRight="@dimen/_20sdp"
+    <RelativeLayout
+        android:id="@+id/banner1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="5"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/img_like"
-            android:padding="@dimen/_15sdp"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/edit_fav"
-            android:layout_weight="1" />
+        <RelativeLayout
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:gravity="center" />
+    </RelativeLayout>
 
-        <ImageView
-            android:id="@+id/img_setwall"
-            android:padding="@dimen/_15sdp"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/edit_setim"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/img_share"
-            android:padding="@dimen/_15sdp"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/edit_share"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/img_recycle"
-            android:padding="@dimen/_15sdp"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/edit_re"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:id="@+id/img_hide"
-            android:padding="@dimen/_15sdp"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:src="@drawable/edit_hide"
-            android:layout_weight="1" />
-    </LinearLayout>
 </RelativeLayout>
+
